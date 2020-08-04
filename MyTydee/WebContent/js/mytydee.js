@@ -284,7 +284,6 @@ document.addEventListener("DOMContentLoaded", () => {
             dimsection.appendChild(visionlayer);
             
             listRequest();
-            // ajax 함수 불러오기
             
             let camera = document.getElementById("import__cameraarea");
             camera.addEventListener("click", () => {
@@ -345,28 +344,25 @@ function listRequest(){
 	xhr.send();
 	xhr.onreadystatechange = () => {
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
 			let text = "";
 			if (xhr.responseText != null || xhr.responseText != ""){
 				text = JSON.parse(xhr.responseText);
 			}
-			console.log(text);
 			
 			let table = document.createElement("table");
 			table.setAttribute("border", 1);
 			let thead = table.insertRow(-1);
-			let th1 = thead.insertCell(0);
-			let th2 = thead.insertCell(1);
-			let th3 = thead.insertCell(2);
+			let th1 = thead.insertCell(-1);
 			th1.innerHTML = "no.";
+			let th2 = thead.insertCell(-1);
 			th2.innerHTML = "미리보기";
+			let th3 = thead.insertCell(-1);
 			th3.innerHTML = "생성일자";
 			if (text == "" || text == null){
 				let tr = table.insertRow(-1);
-				let td = tr.insertCell(0);
+				let td = tr.insertCell(-1);
 				td.colSpan = 3;
 				td.innerHTML = "저장된 이미지가 없습니다.";
-				// 저장된 텍스트화된 이미지가 없습니다
 			} else {
 				let col = [];
 				for (let i=0; i<text.length; i++){
@@ -378,13 +374,13 @@ function listRequest(){
 				}
 				for (let i=0; i<text.length; i++){
 					let tr = table.insertRow(-1);
-					tr.setAttribute("onclick","oneRequest("+text[i][col[0]]+","+text[i][col[2]]+");");
-					let td1 = tr.insertCell(0);
+					tr.setAttribute("onclick","oneRequest("+text[i][col[0]]+","+text[i][col[1]]+");");
+					let td1 = tr.insertCell(-1);
 					td1.innerHTML = text[i][col[0]];
-					let td2 = tr.insertCell(2);
+					let td2 = tr.insertCell(-1);
 					td2.innerHTML = text[i][col[3]];
-					let td3 = tr.insertCell(1);
-					td3.innerHTML = text[i][col[1]];
+					let td3 = tr.insertCell(-1);
+					td3.innerHTML = text[i][col[2]];
 				}
 			}
 			let pop__list = document.getElementsByClassName("pop__list")[0];
@@ -399,27 +395,25 @@ function oneRequest(no, vision_no){
 	xhr.send();
 	xhr.onreadystatechange = () => {
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
-			// table로 만들어주기
 			let text = JSON.parse(xhr.responseText);
 			let table = document.createElement("table");
 			table.setAttribute("border", 1);
 			let tr1 = table.insertRow(-1);
-			let td1 = tr1.inserCell(0);
+			let td1 = tr1.insertCell(-1);
 			td1.innerHTML = "no.";
-			let td2 = tr1.insertCell(1);
+			let td2 = tr1.insertCell(-1);
 			td2.innerHTML = no+"";
 			
 			let tr2 = table.insertRow(-1);
-			td1 = tr2.insertCell(0);
-			td1.innerHTML = "저장일자";
-			td2 = tr2.insertCell(1);
+			td1 = tr2.insertCell(-1);
+			td1.innerHTML = "생성일자";
+			td2 = tr2.insertCell(-1);
 			td2.innerHTML = text.vision_regdate;
 			
 			let tr3 = table.insertRow(-1);
-			td1 = tr3.insertCell(0);
+			td1 = tr3.insertCell(-1);
 			td1.innerHTML = "내용";
-			td2 = tr3.insertCell(1);
+			td2 = tr3.insertCell(-1);
 			td2.innerHTML = text.vision_text;
 			
 			let pop__list = document.getElementsByClassName("pop__list")[0];
