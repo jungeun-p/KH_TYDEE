@@ -14,6 +14,15 @@
 				<property name="password" value="kh"/>
 			</dataSource>
 		</environment>
+		<environment id="development2">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@qclass.itpime.org:1521:xe"/>
+				<property name="username" value="bigmaster01_semi"/>
+				<property name="password" value="semi"/>
+			</dataSource>
+		</environment>
 	</environments>
 	<mappers>
 		<mapper resource="com/toast/db/mapper.xml" />

@@ -68,8 +68,8 @@ if (loginuser == null) {
 						<form action="mytydee.do" method="post" id="tiny-form">
 							<div class="modal__wrap">
 								<div class="tiny__buttons-left">
-									<span id="editarea"><i class="fas fa-edit"></i></span> <span
-										id="deletearea"><i class="far fa-trash-alt"></i></span>
+									<span id="editarea"><i class="fas fa-edit"></i></span>
+									<span id="deletearea"><i class="far fa-trash-alt"></i></span>
 								</div>
 								<div class="tiny__buttons-right">
 									<span id="addarea"><i class="fas fa-plus"></i></span>

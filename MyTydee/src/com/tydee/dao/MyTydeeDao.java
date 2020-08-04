@@ -1,10 +1,8 @@
 package com.tydee.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
 import com.tydee.dto.MyTydeeDistinctDto;

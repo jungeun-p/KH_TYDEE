@@ -8,6 +8,7 @@
 	<typeAliases>
 		<typeAlias type="com.tydee.dto.MyTydeeDto" alias="MyTydeeDto"/>
 		<typeAlias type="com.tydee.dto.MyTydeeDistinctDto" alias="DistinctDto"/>
+		<typeAlias type="com.tydee.dto.MyTydeeVisionDto" alias="VisionDto"/>
 		<typeAlias type="com.tydee.dto.UserInfoDto" alias="UserInfoDto"/>
 	</typeAliases>
 	<environments default="development">
