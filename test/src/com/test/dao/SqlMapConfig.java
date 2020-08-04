@@ -1,4 +1,4 @@
-package com.toast.dao;
+package com.test.dao;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -14,7 +14,7 @@ public class SqlMapConfig {
 		Reader reader = null;
 		try {
 			reader = Resources.getResourceAsReader(resource);
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "development");
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "development2");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

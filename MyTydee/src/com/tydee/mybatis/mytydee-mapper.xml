@@ -57,4 +57,28 @@
 		INSERT INTO MYTYDEE
 		VALUES(MYTYDEE_SEQ.NEXTVAL, #{user_no}, 'D', #{tiny_title}, 0, #{tiny_content}, null, SYSDATE)
 	</insert>
+	
+	<insert id="insertVision" parameterType="VisionDto">
+		INSERT INTO MYTYDEE_VISION
+		VALUES(MYTYDEE_VISION_SEQ.NEXTVAL, #{user_no}, #{vision_text}, SYSDATE)
+	</insert>
+	<select id="selectListVision" parameterType="int" resultType="VisionDto">
+		SELECT VISION_NO, USER_NO, VISION_TEXT, VISION_REGDATE
+		FROM (SELECT VISION_NO, USER_NO, VISION_TEXT, VISION_REGDATE
+				FROM MYTYDEE_VISION
+				WHERE USER_NO = #{user_no}
+				ORDER BY VISION_NO DESC)
+	<![CDATA[
+		WHERE ROWNUM <= 5
+	]]>
+	</select>
+	<select id="selectOneVision" parameterType="int">
+		SELECT VISION_NO, USER_NO, VISION_TEXT, VISION_REGDATE
+		FROM MYTYDEE_VISION
+		WHERE VISION_NO = #{vision_no}
+	</select>
+	<delete id="deleteVision" parameterType="int">
+		DELETE FROM MYTYDEE_VISION
+		WHERE VISION_NO = #{vision_no}
+	</delete>
 </mapper>

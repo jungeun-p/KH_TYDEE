@@ -25,4 +25,12 @@
   	<servlet-name>userinfo</servlet-name>
   	<url-pattern>/member.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>visionapi</servlet-name>
+  	<servlet-class>com.tydee.controller.MyTydeeVisionController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>visionapi</servlet-name>
+  	<url-pattern>/vision.do</url-pattern>
+  </servlet-mapping>
 </web-app>
