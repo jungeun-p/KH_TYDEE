@@ -77,6 +77,7 @@ const newSlice = slice.enter()
 	focusOn(d);
 })
 .on("mouseover", d => {
+	d3.select("[name=image]").attr("src", "./images/"+d.data.tiny_image);
 	d3.select("[name=tiny_no]").attr("value", d.data.tiny_no);
 	d3.select("[name=tiny_type]").attr("value", d.data.tiny_type);
 	d3.select("[name=type]").attr("value", (d.data.tiny_type == 'D')?"TYDEE":((d.data.tiny_type == 'N')?"TINY":"USER"));

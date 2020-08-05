@@ -36,7 +36,7 @@
 %>
 
 <body>
-    <form action="mytydee.do?command=insertImg" method="post" enctype="multipart/form-data">
+    <form action="vision.do?command=insert" method="post" enctype="multipart/form-data">
         <section>
             <input type="submit" value="저장" />
             <input type="file" accept="image/*" id="image" name="imagefile" />
