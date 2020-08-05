@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             name.setAttribute("readonly", "readonly");
             content.setAttribute("readonly", "readonly");
             newSlice.on("mouseover", d => {
+            	d3.select("[name=image]").attr("src", "./images/"+d.data.tiny_image);
                 d3.select("[name=tiny_no]").attr("value", d.data.tiny_no);
                 d3.select("[name=tiny_type]").attr("value", d.data.tiny_type);
                 d3.select("[name=type]").attr("value", (d.data.tiny_type == 'D') ? "TYDEE" : ((d.data.tiny_type == 'N') ? "TINY" : "USER"));
@@ -188,9 +189,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let image = document.createElement("input");
         image.setAttribute("class", "pop__content");
-        image.setAttribute("type", "file");
-        image.setAttribute("name", "tiny_image");
+        image.setAttribute("type", "button");
+        image.setAttribute("value", "업로드");
+        image.setAttribute("onclick", "makeapopup('mytydee_popup.jsp')");
         imagediv.appendChild(image);
+        let spanimg = document.createElement("span");
+        spanimg.textContent = "이미지 없음";
+        imagediv.appendChild(spanimg);
 
         let depthdiv = document.createElement("div");
         depthdiv.setAttribute("class", "pop__content_box")
@@ -234,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addlayer.appendChild(insertbutton);
         dimsection.appendChild(addlayer);
         document.body.appendChild(dimsection);
+        
         let exit = document.getElementById("closearea");
         exit.addEventListener("click", () => {
             document.getElementsByClassName("dim__layer")[0].remove();
@@ -328,13 +334,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function visionPopup(){
+function makeapopup(jspname){
     let popupWidth = 400;
     let popupHeight = 500;
     let popupX = (window.screen.width / 2) - (popupWidth / 2);
     let popupY = (window.screen.height / 2) - (popupHeight / 2);
     let options = "top=" + popupY + ", left=" + popupX + ", width=" + popupWidth + ", height=" + popupHeight + ", status=no, menubar=no, toolbar=no, resizable=no";
-    window.open("mytydee_popup.jsp", "visionpopup", options);
+    window.open(jspname, "popup", options);
 }
 
 function listRequest(){
@@ -391,12 +397,12 @@ function listRequest(){
 		icamera.setAttribute("class", "fas fa-camera");
 		camera.innerHTML = "";
 		camera.appendChild(icamera);
-		camera.addEventListener("click", visionPopup);
+		camera.addEventListener("click", makeapopup("mytydee_vision_popup.jsp"));
 	} // xhr.onreadystatechange
 }
 function oneRequest(no, vision_no){
 	let camera = document.getElementById("import__cameraarea");
-	camera.removeEventListener("click", visionPopup);
+	camera.removeEventListener("click", makeapopup("mytydee_vision_popup.jsp"));
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST","vision.do?command=showone&vision_no="+vision_no);

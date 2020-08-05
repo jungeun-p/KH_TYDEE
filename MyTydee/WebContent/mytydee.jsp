@@ -74,7 +74,7 @@ if (loginuser == null) {
 								<div class="tiny__buttons-right">
 									<span id="addarea"><i class="fas fa-plus"></i></span>
 								</div>
-								<div class="tiny__img"></div>
+								<div class="tiny__img"><img name="image"></div>
 								<div class="tiny__menu">
 									<p><label for="type">type</label></p>
 									<p><label for="name">name</label></p>
