@@ -8,19 +8,21 @@ import java.util.List;
 import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
-import com.google.cloud.vision.v1.Block;
 import com.google.cloud.vision.v1.Feature;
 import com.google.cloud.vision.v1.Image;
 import com.google.cloud.vision.v1.ImageAnnotatorClient;
-import com.google.cloud.vision.v1.Page;
-import com.google.cloud.vision.v1.Paragraph;
-import com.google.cloud.vision.v1.Symbol;
 import com.google.cloud.vision.v1.TextAnnotation;
-import com.google.cloud.vision.v1.Word;
 import com.google.cloud.vision.v1.Feature.Type;
 import com.google.protobuf.ByteString;
-
+/*
+ * import com.google.cloud.vision.v1.Block;
+ * import com.google.cloud.vision.v1.Page;
+ * import com.google.cloud.vision.v1.Paragraph;
+ * import com.google.cloud.vision.v1.Symbol;
+ * import com.google.cloud.vision.v1.Word;
+ */
 public class MyTydeeVisionDetectText {
+	
 	public static String detectDocumentText(String filePath) throws IOException {
 		  List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -31,11 +33,9 @@ public class MyTydeeVisionDetectText {
 		  AnnotateImageRequest request =
 		      AnnotateImageRequest.newBuilder().addFeatures(feat).setImage(img).build();
 		  requests.add(request);
-		  String pageText = "";
-
-		  // Initialize client that will be used to send requests. This client only needs to be created
-		  // once, and can be reused for multiple requests. After completing all of your requests, call
-		  // the "close" method on the client to safely clean up any remaining background resources.
+	      TextAnnotation annotation = null;
+		  
+		  StringBuffer pageText = new StringBuffer();
 		  try (ImageAnnotatorClient client = ImageAnnotatorClient.create()) {
 		    BatchAnnotateImagesResponse response = client.batchAnnotateImages(requests);
 		    List<AnnotateImageResponse> responses = response.getResponsesList();
@@ -47,37 +47,37 @@ public class MyTydeeVisionDetectText {
 		        return "error!";
 		      }
 		      // For full list of available annotations, see http://g.co/cloud/vision/docs
-		      TextAnnotation annotation = res.getFullTextAnnotation();
+		      annotation = res.getFullTextAnnotation();
+		      /*
 		      for (Page page : annotation.getPagesList()) {
-		        pageText = "";
 		        for (Block block : page.getBlocksList()) {
-		          String blockText = "";
+		          StringBuffer blockText = new StringBuffer();
 		          for (Paragraph para : block.getParagraphsList()) {
-		            String paraText = "";
+		            StringBuffer paraText = new StringBuffer();
 		            for (Word word : para.getWordsList()) {
-		              String wordText = "";
+		              StringBuffer wordText = new StringBuffer();
 		              for (Symbol symbol : word.getSymbolsList()) {
-		                wordText = wordText + symbol.getText();
-		                System.out.format(
-		                    "Symbol text: %s (confidence: %f)%n",
-		                    symbol.getText(), symbol.getConfidence());
+		                wordText.append(symbol.getText());
+//		                System.out.format("Symbol text: %s (confidence: %f)%n", symbol.getText(), symbol.getConfidence());
 		              }
-		              System.out.format(
-		                  "Word text: %s (confidence: %f)%n%n", wordText, word.getConfidence());
-		              paraText = String.format("%s %s", paraText, wordText);
+//		              System.out.format("Word text: %s (confidence: %f)%n%n", wordText, word.getConfidence());
+//		              paraText.append(" ").append(wordText);
+		              paraText.append(wordText);
 		            }
 		            // Output Example using Paragraph:
-		            System.out.println("%nParagraph: %n" + paraText);
-		            System.out.format("Paragraph Confidence: %f%n", para.getConfidence());
-		            blockText = blockText + paraText;
+//		            System.out.println("%nParagraph: %n" + paraText);
+//		            System.out.format("Paragraph Confidence: %f%n", para.getConfidence());
+		            blockText.append(paraText);
 		          }
-		          pageText = pageText + blockText;
+		          pageText.append(blockText);
 		        }
 		      }
-		      System.out.println("%nComplete annotation:");
-		      System.out.println(annotation.getText());
+//		      System.out.println("%nComplete annotation:");
+//		      System.out.println(annotation.getText());
+		       */
 		    }
 		  }
-		  return pageText;
+//		  return pageText.toString();
+		  return annotation.getText();
 		}
 }

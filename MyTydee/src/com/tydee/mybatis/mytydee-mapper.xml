@@ -72,7 +72,7 @@
 		WHERE ROWNUM <= 5
 	]]>
 	</select>
-	<select id="selectOneVision" parameterType="int">
+	<select id="selectOneVision" parameterType="int" resultType="VisionDto">
 		SELECT VISION_NO, USER_NO, VISION_TEXT, VISION_REGDATE
 		FROM MYTYDEE_VISION
 		WHERE VISION_NO = #{vision_no}

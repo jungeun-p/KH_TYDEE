@@ -40,6 +40,7 @@
         <section>
             <input type="submit" value="저장" />
             <input type="file" accept="image/*" id="image" name="imagefile" />
+            <input type="button" value="닫기" onclick="self.close();"/>
         </section>
         <section>
             <img id="frame" />
