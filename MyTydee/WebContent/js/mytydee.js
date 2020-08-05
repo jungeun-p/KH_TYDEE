@@ -190,6 +190,9 @@ document.addEventListener("DOMContentLoaded", () => {
         closebutton.appendChild(span2);
 
         addlayer.appendChild(closebutton);
+        
+        let contentinsert = document.createElement("div");
+        contentinsert.setAttribute("class", "pop__content_insert");
 
         let menu = document.createElement("div");
         menu.setAttribute("class", "pop__menu");
@@ -224,9 +227,8 @@ document.addEventListener("DOMContentLoaded", () => {
         menu.appendChild(p2);
         menu.appendChild(p3);
         menu.appendChild(p4);
-        addlayer.appendChild(menu);
-
-
+        contentinsert.appendChild(menu);
+ 
         let contents = document.createElement("div");
         contents.setAttribute("class", "pop__contents");
 
@@ -332,7 +334,9 @@ document.addEventListener("DOMContentLoaded", () => {
         contents.appendChild(depthdiv);
 
         form.appendChild(contents);
-        addlayer.appendChild(form);
+        contentinsert.appendChild(form);
+        
+        addlayer.appendChild(contentinsert);
 
         let insertbutton = document.createElement("div");
         insertbutton.setAttribute("class", "pop__buttons");
