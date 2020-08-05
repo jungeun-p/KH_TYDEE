@@ -284,19 +284,9 @@ document.addEventListener("DOMContentLoaded", () => {
             dimsection.appendChild(visionlayer);
             
             listRequest();
-            
-            let camera = document.getElementById("import__cameraarea");
-            camera.addEventListener("click", () => {
-                let popupWidth = 400;
-                let popupHeight = 500;
-                let popupX = (window.screen.width / 2) - (popupWidth / 2);
-                let popupY = (window.screen.height / 2) - (popupHeight / 2);
-                let options = "top=" + popupY + ", left=" + popupX + ", width=" + popupWidth + ", height=" + popupHeight + ", status=no, menubar=no, toolbar=no, resizable=no";
-                window.open("mytydee_popup.jsp", "visionpopup", options);
-            });
             let exit = document.getElementById("import__closearea");
             exit.addEventListener("click", () => {
-            	document.querySelector(".pop__layer").remove();
+            	document.getElementsByClassName("pop__layer")[1].remove();
             });
         });
     });
@@ -337,6 +327,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+function visionPopup(){
+    let popupWidth = 400;
+    let popupHeight = 500;
+    let popupX = (window.screen.width / 2) - (popupWidth / 2);
+    let popupY = (window.screen.height / 2) - (popupHeight / 2);
+    let options = "top=" + popupY + ", left=" + popupX + ", width=" + popupWidth + ", height=" + popupHeight + ", status=no, menubar=no, toolbar=no, resizable=no";
+    window.open("mytydee_popup.jsp", "visionpopup", options);
+}
 
 function listRequest(){
 	let xhr = new XMLHttpRequest();
@@ -387,9 +386,18 @@ function listRequest(){
 			pop__list.innerHTML = "";
 			pop__list.appendChild(table);
 		} // arrow function
+		let camera = document.getElementById("import__cameraarea");
+		let icamera = document.createElement("i");
+		icamera.setAttribute("class", "fas fa-camera");
+		camera.innerHTML = "";
+		camera.appendChild(icamera);
+		camera.addEventListener("click", visionPopup);
 	} // xhr.onreadystatechange
 }
 function oneRequest(no, vision_no){
+	let camera = document.getElementById("import__cameraarea");
+	camera.removeEventListener("click", visionPopup);
+	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST","vision.do?command=showone&vision_no="+vision_no);
 	xhr.send();
@@ -420,5 +428,10 @@ function oneRequest(no, vision_no){
 			pop__list.innerHTML = "";
 			pop__list.appendChild(table);
 		}
+		let iback = document.createElement("i");
+		iback.setAttribute("class", "fas fa-undo-alt");
+		camera.innerHTML = "";
+		camera.appendChild(iback);
+		camera.addEventListener("click", listRequest);
 	}
 }

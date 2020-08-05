@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.oreilly.servlet.MultipartRequest;
 import com.tydee.dao.MyTydeeVisionDao;
 import com.tydee.dto.MyTydeeVisionDto;
@@ -47,6 +46,10 @@ public class MyTydeeVisionController extends HttpServlet {
 		int user_no = loginuser.getUser_no();
 		if (command.equals("insert")) {
 			String path = request.getSession().getServletContext().getRealPath("images");
+			File dir = new File(path);
+			if (!dir.isDirectory()) {
+				dir.mkdir();
+			}
 			int size = 1024*1024*10;
 			String file = "";
 			String originalFile = "";
@@ -62,6 +65,7 @@ public class MyTydeeVisionController extends HttpServlet {
 		        e.printStackTrace();
 		    }
 		    String visionpath = path + "\\"+file;
+		    System.out.println(visionpath);
 		    String result = MyTydeeVisionDetectText.detectDocumentText(visionpath);
 		    request.setAttribute("visionresult", result);
 		    File f = new File(visionpath);

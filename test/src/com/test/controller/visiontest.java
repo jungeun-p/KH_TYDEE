@@ -44,14 +44,14 @@ public class visiontest extends HttpServlet {
 
 		        file = multi.getFilesystemName(str); // 업로드 된 파일 이름 가져옴
 		        originalFile = multi.getOriginalFileName(str); // 원래의 파일이름 가져옴
-
+		        
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
 		    String visionpath = path + "\\"+file;
 		    System.out.println(visionpath);
 		    String result = VisionTest.detectDocumentText(visionpath);
-		    System.out.println(result);
+//		    System.out.println(result);
 		    if(result.equals("")) {
 		    	request.setAttribute("condition", "really fail");
 		    } else {
