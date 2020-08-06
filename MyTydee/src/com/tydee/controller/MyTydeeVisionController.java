@@ -65,13 +65,11 @@ public class MyTydeeVisionController extends HttpServlet {
 		        e.printStackTrace();
 		    }
 		    String visionpath = path + "\\"+file;
-		    System.out.println(visionpath);
 		    String result = MyTydeeVisionDetectText.detectDocumentText(visionpath);
 		    request.setAttribute("visionresult", result);
 		    File f = new File(visionpath);
 		    if (f.exists()) {
 		    	f.delete();
-		    	System.out.println("파일 삭제");
 		    }
 		    dispatch("vision.do?command=insertres", request, response);
 		} else if (command.equals("insertres")) {

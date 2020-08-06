@@ -69,7 +69,6 @@ public class MyTydeeController extends HttpServlet {
 			}
 			
 		} else if (command.equals("insertImg")) {
-			System.out.println("이미지 저장중");
 			String tiny_image = "";
 			String path = request.getSession().getServletContext().getRealPath("images").replace("\\","\\\\");
 			File dir = new File(path);
@@ -89,10 +88,8 @@ public class MyTydeeController extends HttpServlet {
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
-		    System.out.println("이미지 저장 완료");
 		    request.setAttribute("tiny_image", file);
 			dispatch("mytydee.do?command=imguploded", request, response);
-			System.out.println("requestdispatcher~~~");
 		} else if (command.equals("imguploded")) {
 			String tiny_image = (String) request.getAttribute("tiny_image");
 				String js = "<script type='text/javascript'>"
@@ -126,7 +123,6 @@ public class MyTydeeController extends HttpServlet {
 			int res = dao.insert(dto);
 			if (res > 0) {
 				response.sendRedirect("mytydee.do?command=main");
-				System.out.println("업로드 성공!");
 			} else {
 				response.sendRedirect("mytydee.do?command=main");
 			}

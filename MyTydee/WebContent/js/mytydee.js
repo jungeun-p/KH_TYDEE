@@ -2,6 +2,112 @@ let edit = document.getElementById("editarea");
 let del = document.getElementById("deletearea");
 let add = document.getElementById("addarea");
 
+function makeapopup(jspname){
+    let popupWidth = 400;
+    let popupHeight = 500;
+    let popupX = (window.screen.width / 2) - (popupWidth / 2);
+    let popupY = (window.screen.height / 2) - (popupHeight / 2);
+    let options = "top=" + popupY + ", left=" + popupX + ", width=" + popupWidth + ", height=" + popupHeight + ", status=no, menubar=no, toolbar=no, resizable=no";
+    window.open(jspname, "popup", options);
+}
+
+function listRequest(){
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "vision.do?command=showlist");
+	xhr.send();
+	xhr.onreadystatechange = () => {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			let text = "";
+			if (xhr.responseText != null || xhr.responseText != ""){
+				text = JSON.parse(xhr.responseText);
+			}
+			
+			let table = document.createElement("table");
+			table.setAttribute("border", 1);
+			let thead = table.insertRow(-1);
+			let th1 = thead.insertCell(-1);
+			th1.innerHTML = "no.";
+			let th2 = thead.insertCell(-1);
+			th2.innerHTML = "미리보기";
+			let th3 = thead.insertCell(-1);
+			th3.innerHTML = "생성일자";
+			if (text == "" || text == null){
+				let tr = table.insertRow(-1);
+				let td = tr.insertCell(-1);
+				td.colSpan = 3;
+				td.innerHTML = "저장된 이미지가 없습니다.";
+			} else {
+				let col = [];
+				for (let i=0; i<text.length; i++){
+					for (let key in text[i]){
+						if (col.indexOf(key) === -1) {
+							col.push(key);
+						}
+					}
+				}
+				for (let i=0; i<text.length; i++){
+					let tr = table.insertRow(-1);
+					tr.setAttribute("onclick","oneRequest("+text[i][col[0]]+","+text[i][col[1]]+")");
+					let td1 = tr.insertCell(-1);
+					td1.innerHTML = text[i][col[0]];
+					let td2 = tr.insertCell(-1);
+					td2.innerHTML = text[i][col[3]];
+					let td3 = tr.insertCell(-1);
+					td3.innerHTML = text[i][col[2]];
+				}
+			}
+			let pop__list = document.getElementsByClassName("pop__list")[0];
+			pop__list.innerHTML = "";
+			pop__list.appendChild(table);
+			let camera = document.getElementById("import__cameraarea");
+			let icamera = document.createElement("i");
+			icamera.setAttribute("class", "fas fa-camera");
+			icamera.setAttribute("onclick", "makeapopup('mytydee_vision_popup.jsp')");
+			camera.innerHTML = "";
+			camera.appendChild(icamera);
+		} // arrow function
+	} // xhr.onreadystatechange
+}
+function oneRequest(no, vision_no){
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST","vision.do?command=showone&vision_no="+vision_no);
+	xhr.send();
+	xhr.onreadystatechange = () => {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			let text = JSON.parse(xhr.responseText);
+			let table = document.createElement("table");
+			table.setAttribute("border", 1);
+			let tr1 = table.insertRow(-1);
+			let td1 = tr1.insertCell(-1);
+			td1.innerHTML = "no.";
+			let td2 = tr1.insertCell(-1);
+			td2.innerHTML = no+"";
+			
+			let tr2 = table.insertRow(-1);
+			td1 = tr2.insertCell(-1);
+			td1.innerHTML = "생성일자";
+			td2 = tr2.insertCell(-1);
+			td2.innerHTML = text.vision_regdate;
+			
+			let tr3 = table.insertRow(-1);
+			td1 = tr3.insertCell(-1);
+			td1.innerHTML = "내용";
+			td2 = tr3.insertCell(-1);
+			td2.innerHTML = text.vision_text;
+			
+			let pop__list = document.getElementsByClassName("pop__list")[0];
+			pop__list.innerHTML = "";
+			pop__list.appendChild(table);
+			let camera = document.getElementById("import__cameraarea");
+			let iback = document.createElement("i");
+			iback.setAttribute("class", "fas fa-undo-alt");
+			iback.setAttribute("onclick", "listRequest()");
+			camera.innerHTML = "";
+			camera.appendChild(iback);
+		}
+	}
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     let tiny_no;
     let name = document.getElementsByClassName("tiny__content")[1];
@@ -84,6 +190,9 @@ document.addEventListener("DOMContentLoaded", () => {
         closebutton.appendChild(span2);
 
         addlayer.appendChild(closebutton);
+        
+        let contentinsert = document.createElement("div");
+        contentinsert.setAttribute("class", "pop__content_insert");
 
         let menu = document.createElement("div");
         menu.setAttribute("class", "pop__menu");
@@ -118,9 +227,8 @@ document.addEventListener("DOMContentLoaded", () => {
         menu.appendChild(p2);
         menu.appendChild(p3);
         menu.appendChild(p4);
-        addlayer.appendChild(menu);
-
-
+        contentinsert.appendChild(menu);
+ 
         let contents = document.createElement("div");
         contents.setAttribute("class", "pop__contents");
 
@@ -226,7 +334,9 @@ document.addEventListener("DOMContentLoaded", () => {
         contents.appendChild(depthdiv);
 
         form.appendChild(contents);
-        addlayer.appendChild(form);
+        contentinsert.appendChild(form);
+        
+        addlayer.appendChild(contentinsert);
 
         let insertbutton = document.createElement("div");
         insertbutton.setAttribute("class", "pop__buttons");
@@ -294,7 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
             exit.addEventListener("click", () => {
             	document.getElementsByClassName("pop__layer")[1].remove();
             });
-        });
+        }); // importarea.addEventListener
     });
 
     let search = document.getElementsByClassName("tiny__search")[0];
@@ -334,110 +444,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function makeapopup(jspname){
-    let popupWidth = 400;
-    let popupHeight = 500;
-    let popupX = (window.screen.width / 2) - (popupWidth / 2);
-    let popupY = (window.screen.height / 2) - (popupHeight / 2);
-    let options = "top=" + popupY + ", left=" + popupX + ", width=" + popupWidth + ", height=" + popupHeight + ", status=no, menubar=no, toolbar=no, resizable=no";
-    window.open(jspname, "popup", options);
-}
-
-function listRequest(){
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", "vision.do?command=showlist");
-	xhr.send();
-	xhr.onreadystatechange = () => {
-		if(xhr.readyState == 4 && xhr.status == 200) {
-			let text = "";
-			if (xhr.responseText != null || xhr.responseText != ""){
-				text = JSON.parse(xhr.responseText);
-			}
-			
-			let table = document.createElement("table");
-			table.setAttribute("border", 1);
-			let thead = table.insertRow(-1);
-			let th1 = thead.insertCell(-1);
-			th1.innerHTML = "no.";
-			let th2 = thead.insertCell(-1);
-			th2.innerHTML = "미리보기";
-			let th3 = thead.insertCell(-1);
-			th3.innerHTML = "생성일자";
-			if (text == "" || text == null){
-				let tr = table.insertRow(-1);
-				let td = tr.insertCell(-1);
-				td.colSpan = 3;
-				td.innerHTML = "저장된 이미지가 없습니다.";
-			} else {
-				let col = [];
-				for (let i=0; i<text.length; i++){
-					for (let key in text[i]){
-						if (col.indexOf(key) === -1) {
-							col.push(key);
-						}
-					}
-				}
-				for (let i=0; i<text.length; i++){
-					let tr = table.insertRow(-1);
-					tr.setAttribute("onclick","oneRequest("+text[i][col[0]]+","+text[i][col[1]]+");");
-					let td1 = tr.insertCell(-1);
-					td1.innerHTML = text[i][col[0]];
-					let td2 = tr.insertCell(-1);
-					td2.innerHTML = text[i][col[3]];
-					let td3 = tr.insertCell(-1);
-					td3.innerHTML = text[i][col[2]];
-				}
-			}
-			let pop__list = document.getElementsByClassName("pop__list")[0];
-			pop__list.innerHTML = "";
-			pop__list.appendChild(table);
-		} // arrow function
-		let camera = document.getElementById("import__cameraarea");
-		let icamera = document.createElement("i");
-		icamera.setAttribute("class", "fas fa-camera");
-		camera.innerHTML = "";
-		camera.appendChild(icamera);
-		camera.addEventListener("click", makeapopup("mytydee_vision_popup.jsp"));
-	} // xhr.onreadystatechange
-}
-function oneRequest(no, vision_no){
-	let camera = document.getElementById("import__cameraarea");
-	camera.removeEventListener("click", makeapopup("mytydee_vision_popup.jsp"));
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST","vision.do?command=showone&vision_no="+vision_no);
-	xhr.send();
-	xhr.onreadystatechange = () => {
-		if(xhr.readyState == 4 && xhr.status == 200) {
-			let text = JSON.parse(xhr.responseText);
-			let table = document.createElement("table");
-			table.setAttribute("border", 1);
-			let tr1 = table.insertRow(-1);
-			let td1 = tr1.insertCell(-1);
-			td1.innerHTML = "no.";
-			let td2 = tr1.insertCell(-1);
-			td2.innerHTML = no+"";
-			
-			let tr2 = table.insertRow(-1);
-			td1 = tr2.insertCell(-1);
-			td1.innerHTML = "생성일자";
-			td2 = tr2.insertCell(-1);
-			td2.innerHTML = text.vision_regdate;
-			
-			let tr3 = table.insertRow(-1);
-			td1 = tr3.insertCell(-1);
-			td1.innerHTML = "내용";
-			td2 = tr3.insertCell(-1);
-			td2.innerHTML = text.vision_text;
-			
-			let pop__list = document.getElementsByClassName("pop__list")[0];
-			pop__list.innerHTML = "";
-			pop__list.appendChild(table);
-		}
-		let iback = document.createElement("i");
-		iback.setAttribute("class", "fas fa-undo-alt");
-		camera.innerHTML = "";
-		camera.appendChild(iback);
-		camera.addEventListener("click", listRequest);
-	}
-}
