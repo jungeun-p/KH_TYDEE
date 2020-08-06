@@ -53,6 +53,29 @@ public class BoardItemController extends HttpServlet {
 			 List<BoardItemDto> categoryList = dao.selectCategory();
 			 request.setAttribute("categoryList", categoryList);
 			 dispatch("boarditem_detail.jsp", request, response);
+		} else if (command.equals("insert")) {
+			dispatch("boarditem_insert.jsp",request, response);
+		} else if (command.equals("insertres")) {
+			String item_category = request.getParameter("item_category");
+			String item_title = request.getParameter("item_title");
+			String item_content = request.getParameter("item_content");
+			String item_image = request.getParameter("item_image");
+			int item_price = Integer.parseInt(request.getParameter("item_price"));
+			BoardItemDto dto = new BoardItemDto(item_category, item_title, item_content, item_image, item_price);
+			int res = dao.insert(dto);
+			if (res > 0) {
+				System.out.println("등록 성공");
+			}
+			// 관리자 전용 eshop 관리 페이지가 있다면 거기가 좋겠지만
+			dispatch("item.do?command=list", request, response);
+		} else if (command.equals("insertImg")) {
+			
+		} else if (command.equals("update")) {
+			
+		} else if (command.equals("delete")) {
+			
+		} else if (command.equals("")) {
+			
 		}
 	}
 	protected void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

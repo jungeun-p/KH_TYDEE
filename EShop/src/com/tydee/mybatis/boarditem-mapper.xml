@@ -20,5 +20,9 @@
 		WHERE ITEM_ACTIVE = 'Y'
 		ORDER BY ITEM_CATEGORY
 	</select>
+	<insert id="insert" parameterType="BoardItemDto">
+		INSERT INTO BOARD_ITEM 
+		VALUES(BOARD_ITEM_SEQ.NEXTVAL, #{item_category}, #{item_title}, #{item_content}, #{item_image}, #{item_price}, SYSDATE, 'Y', 0)
+	</insert>
 
 </mapper>

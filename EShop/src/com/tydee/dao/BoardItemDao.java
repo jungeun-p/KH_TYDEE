@@ -48,4 +48,20 @@ public class BoardItemDao extends SqlMapConfig {
 		}
 		return categoryList;
 	}
+	public int insert(BoardItemDto dto) {
+		SqlSession session = null;
+		int res = 0;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.insert(namespace+"insert", dto);
+			if (res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return res;
+	}
 }
