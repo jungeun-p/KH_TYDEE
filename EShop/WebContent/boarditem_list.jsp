@@ -54,7 +54,7 @@ width: 200px;
 				<a href="item.do?command=insert"><p class="wrtie__eshop"><i class="fas fa-plus"></i></p></a>
 			</c:if>
 			<c:if test="${loginuser.user_role ne 'ADMIN' or empty loginuser }">
-				<a href="basket.do?user_no=${loginuser.user_no }"><p class="cart__eshop"><i class="fas fa-shopping-cart"></i></p></a>
+				<a href="basket.do?command=list"><p class="cart__eshop"><i class="fas fa-shopping-cart"></i></p></a>
 			</c:if>
 		</div>
 		<div class="listinfo">
@@ -73,7 +73,7 @@ width: 200px;
 								<a href="item.do?command=detail&item_no=${item.item_no }">
 									<div class="modal">
 										<div class="modal__wrap">
-											<img class="modal__img" src="./images/${item.item_image ? item.item_image : '1.jpg' }"/>
+											<img class="modal__img" src="./images/${empty item.item_image ? '1.jpg' : item.item_image }"/>
 											<div class="modal__description">
 												<p class="modal__name">${item.item_title }</p>
 												<p class="modal__explain">${item.item_price }</p>

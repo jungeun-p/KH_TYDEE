@@ -1,6 +1,8 @@
 package com.tydee.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.TydeeRenamePolicy;
 import com.tydee.dao.BoardItemDao;
 import com.tydee.dto.BoardItemDto;
 import com.tydee.dto.UserInfoDto;
@@ -67,10 +71,46 @@ public class BoardItemController extends HttpServlet {
 				System.out.println("등록 성공");
 			}
 			// 관리자 전용 eshop 관리 페이지가 있다면 거기가 좋겠지만
-			dispatch("item.do?command=list", request, response);
+			response.sendRedirect("item.do?command=list");
 		} else if (command.equals("insertImg")) {
-			
+			String tiny_image = "";
+			String path = request.getSession().getServletContext().getRealPath("images").replace("\\","\\\\");
+			File dir = new File(path);
+			if (!dir.isDirectory()) {
+				dir.mkdir();
+			}
+			int size = 1024*1024*10;
+			String file = "";
+			String originalFile = "";
+		    try{
+		        MultipartRequest multi = new MultipartRequest(request, path, size, "UTF-8", new TydeeRenamePolicy());
+		        
+		        Enumeration files = multi.getFileNames();
+		        String str = (String)files.nextElement(); // 파일 이름을 받아와 string으로 저장
+		        file = multi.getFilesystemName(str); // 업로드 된 파일 이름 가져옴
+		        originalFile = multi.getOriginalFileName(str); // 원래의 파일이름 가져옴
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    request.setAttribute("item_image", file);
+			dispatch("item.do?command=imguploded", request, response);
+		} else if (command.equals("imguploded")) {
+			String item_image = (String) request.getAttribute("item_image");
+			String js = "<script type='text/javascript'>"
+					+ "let isUpload = opener.document.getElementsByClassName('item__upload')[0].getElementsByTagName('span')[0];"
+					+ "isUpload.textContent = '이미지 업로드 완료';"
+					+ "let hidden = document.createElement('input');"
+					+ "hidden.setAttribute('type', 'hidden');"
+					+ "hidden.setAttribute('name','item_image');"
+					+ "hidden.setAttribute('value','"+item_image+"');"
+					+ "let where = opener.document.getElementsByClassName('item__upload')[0];"
+					+ "where.appendChild(hidden);"
+					+ "self.close();"
+					+ "</script>";
+			response.getWriter().append(js);
 		} else if (command.equals("update")) {
+			
+		} else if (command.equals("updateres")) {
 			
 		} else if (command.equals("delete")) {
 			
