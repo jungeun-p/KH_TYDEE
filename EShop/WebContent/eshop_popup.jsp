@@ -46,6 +46,7 @@
         </section>
     </form>
     <script type="text/javascript" src="js/boarditem_popup.js"></script>
+    <!-- mytydee_popup.js?와 동일한 내용의 파일입니다 통일 가능할 듯 -->
 </body>
 
 </html>

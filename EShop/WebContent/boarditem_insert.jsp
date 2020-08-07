@@ -47,7 +47,7 @@
 		</div>
 		<div class="insert">
 			<form action="item.do" method="post">
-				<input type="hidden" name="command" value="insert" />
+				<input type="hidden" name="command" value="insertres" />
 				<div class="item__menus">
 					<p><label for="title">상품명</label></p>
 					<p><label for="category">카테고리</label></p>

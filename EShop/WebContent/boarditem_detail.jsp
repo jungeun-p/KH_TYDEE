@@ -58,7 +58,7 @@ width: 200px;
 				<a href="item.do?command=insert"><p class="wrtie__eshop"><i class="fas fa-plus"></i></p></a>
 			</c:if>
 			<c:if test="${loginuser.user_role ne 'ADMIN' or empty loginuser }">
-				<a href="basket.do?user_no=${loginuser.user_no }"><p class="cart__eshop"><i class="fas fa-shopping-cart"></i></p></a>
+				<a href="basket.do?command=list"><p class="cart__eshop"><i class="fas fa-shopping-cart"></i></p></a>
 			</c:if>
 		</div>
 		<div class="detailinfo">
@@ -66,20 +66,24 @@ width: 200px;
 				<section class="modals">
 					<div class="modal">
 						<div class="modal__wrap">
-							<img alt="상품사진" src="./images/${item.item_image ? item.item_image : '1.jpg' }">
+							<img alt="상품사진" src="./images/${empty item.item_image ? '1.jpg' : item.item_image }">
 						</div>
 					</div>
 					<div class="modal">
 						<form action="basket.do" method="POST">
 						<input type="hidden" name="command" value="insert" />
-						<input type="hidden" name="user_no" value="${loginuser.user_no ? loginuser.user_no : 0 }" />
+						<input type="hidden" name="user_no" value="${empty loginuser.user_no ? 0 : loginuser.user_no }" />
 						<input type="hidden" name="item_no" value="${item.item_no }" />
 						<div class="modal_wrap">
 							<div class="modal__description">
 								<div class="modal__name">${item.item_title }</div>
 								<div class="modal__explain">${item.item_price }</div>
 								<div class="modal__buttons">
+									<div class="item__quantity_value">
+										<input type="button" value="-" onclick="quan_minus()"/>
 										<input type="number" name="item_quan" value="1" min="1" required="required" />
+										<input type="button" value="+" onclick="quan_plus()"/>
+									</div>
 									<input type="submit" value="장바구니" />
 									<input type="button" value="바로 구매" />
 								</div>
@@ -106,6 +110,22 @@ const viewer = new toastui.Editor({
 	height: '500px',
 	initialValue: `${item.item_content}`
 });
+function quan_minus(){
+	let where = document.getElementsByClassName("item__quantity_value")[0];
+	let quantity = where.querySelector("[type=number]").value; 
+	if (quantity == 1){
+		return false;
+	} else {
+		quantity = Number(quantity) - 1;
+		where.querySelector("[type=number]").value = quantity;
+	}
+}
+function quan_plus(){
+	let where = document.getElementsByClassName("item__quantity_value")[0];
+	let quantity = where.querySelector("[type=number]").value; 
+	quantity = Number(quantity) + 1;
+	where.querySelector("[type=number]").value = quantity;
+}
 </script>
 </body>
 </html>
