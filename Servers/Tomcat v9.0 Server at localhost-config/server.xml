@@ -152,7 +152,8 @@
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
-      <Context docBase="MyTydee" path="/MyTydee" reloadable="true" source="org.eclipse.jst.jee.server:MyTydee"/><Context docBase="MyTydee_1" path="/MyTydee_1" reloadable="true" source="org.eclipse.jst.jee.server:MyTydee_1"/><Context docBase="login" path="/login" reloadable="true" source="org.eclipse.jst.jee.server:login"/><Context docBase="toast_markup1" path="/toast_markup1" reloadable="true" source="org.eclipse.jst.jee.server:toast_markup1"/><Context docBase="MyTydee_servlet" path="/MyTydee_servlet" reloadable="true" source="org.eclipse.jst.jee.server:MyTydee_servlet"/></Host>
+
+      <Context docBase="TYDEE_eshop" path="/TYDEE_eshop" reloadable="true" source="org.eclipse.jst.jee.server:TYDEE_eshop"/></Host>
     </Engine>
   </Service>
 </Server>

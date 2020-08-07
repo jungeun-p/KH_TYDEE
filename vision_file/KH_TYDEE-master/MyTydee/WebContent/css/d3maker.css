@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+#mytydee {
+	font-size: 11px;
+	font-family: 'Roboto', 'Noto Sans KR', sans-serif;	
+}
+
+.slice {
+	cursor: pointer;
+}
+
+.slice .main-arc {
+	stroke: #fff;
+	stroke-width: 0.5px;
+}
+
+.slice .hidden-arc {
+	fill: none;
+}
+
+.slice text {
+	pointer-events: none;
+	text-anchor: middle;
+}

@@ -14,5 +14,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/JUNGEUN/Workspaces/KH/KH_TYDEE/toast_markup1/WebContent/WEB-INF/lib/mybatis-3.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/JUNGEUN/Workspaces/KH/KH_TYDEE/login/WebContent/WEB-INF/lib/gson-2.8.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

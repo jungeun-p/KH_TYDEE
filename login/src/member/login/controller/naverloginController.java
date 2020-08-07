@@ -84,14 +84,14 @@ public class naverloginController extends HttpServlet {
 			snsdto.setMyemail(myemail);
 			
 			request.setAttribute("snsdto", snsdto);
-
-			RequestDispatcher dispatch = 
-					request.getRequestDispatcher("snssignform.jsp");
-			dispatch.forward(request, response);
-
-		    } catch (Exception e) {
+			
+				RequestDispatcher dispatch = 
+						request.getRequestDispatcher("snssignform.jsp");
+				dispatch.forward(request, response);					
+		   
+			} catch (Exception e) {
 		    	e.printStackTrace();
-		    } 
+		    }
 		    	
 		    } else if(command.equals("loginres")) {
 		    	String myemail = request.getParameter("myemail");

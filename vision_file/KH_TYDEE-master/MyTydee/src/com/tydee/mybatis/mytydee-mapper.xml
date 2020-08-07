@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mytydee-mapper">
+	<select id="selectListDistinct" parameterType="int" resultType="DistinctDto">
+		SELECT LEVEL "LEV", TINY_DEPTH, USER_NO
+		FROM MYTYDEE
+		WHERE USER_NO = #{user_no}
+		START WITH TINY_NO IN (SELECT TINY_NO FROM MYTYDEE WHERE TINY_DEPTH = 0)
+		CONNECT BY PRIOR TINY_NO = TINY_DEPTH
+		GROUP BY LEVEL, TINY_DEPTH, USER_NO
+		ORDER BY LEVEL, TINY_DEPTH
+	</select>
+	<select id="selectListTypeD" parameterType="int" resultType="MyTydeeDto">
+		SELECT LEVEL "LEV", TINY_NO, TINY_TITLE
+		FROM MYTYDEE 
+		WHERE USER_NO = #{user_no}
+		AND TINY_TYPE='D'
+		START WITH TINY_NO IN (SELECT TINY_NO FROM MYTYDEE WHERE TINY_DEPTH = 0)
+		CONNECT BY PRIOR TINY_NO = TINY_DEPTH
+		ORDER SIBLINGS BY TINY_NO
+	</select>
+	<select id="selectListLevDepth" parameterType="DistinctDto" resultType="MyTydeeDto">
+		SELECT TINY_NO, USER_NO, USER_NICKNAME, TINY_TITLE, TINY_TYPE, LEV, TINY_DEPTH, TINY_CONTENT, TINY_IMAGE, TINY_REGDATE
+		FROM (SELECT LEVEL "LEV", TINY_NO, USER_NO, TINY_TITLE, TINY_TYPE, TINY_DEPTH, TINY_CONTENT, TINY_IMAGE, TINY_REGDATE
+				FROM MYTYDEE 
+				START WITH TINY_DEPTH IN (SELECT TINY_DEPTH FROM MYTYDEE WHERE TINY_DEPTH = 0)
+				CONNECT BY PRIOR TINY_NO = TINY_DEPTH
+				ORDER SIBLINGS BY TINY_NO)
+		JOIN USER_INFO USING(USER_NO)
+		WHERE LEV = #{lev}
+		AND TINY_DEPTH = #{tiny_depth}
+		AND USER_NO = #{user_no}
+	</select>
+	<select id="selectOneNo" parameterType="int" resultType="MyTydeeDto">
+		SELECT TINY_NO, USER_NO, TINY_TYPE, TINY_TITLE, TINY_DEPTH, TINY_CONTENT, TINY_IMAGE, TINY_REGDATE
+		FROM MYTYDEE
+		WHERE TINY_NO = #{tiny_no}
+	</select>
+	<update id="update" parameterType="MyTydeeDto">
+		UPDATE MYTYDEE SET TINY_TITLE = #{tiny_title}, TINY_CONTENT = #{tiny_content}
+		WHERE TINY_NO = #{tiny_no}
+		AND USER_NO = #{user_no}
+	</update>
+	<delete id="delete" parameterType="MyTydeeDto">
+		DELETE FROM MYTYDEE
+		WHERE TINY_NO = #{tiny_no}
+		<if test="TINY_DEPTH  = 'D'">
+			OR TINY_DEPTH = #{tiny_no}
+		</if>
+		AND USER_NO = #{user_no}
+	</delete>
+	<insert id="insert" parameterType="MyTydeeDto">
+		INSERT INTO MYTYDEE
+		VALUES(MYTYDEE_SEQ.NEXTVAL, #{user_no}, #{tiny_type}, #{tiny_title}, #{tiny_depth}, #{tiny_content}, #{tiny_image}, SYSDATE)
+	</insert>
+	<insert id="insertNew" parameterType="hashmap">
+		INSERT INTO MYTYDEE
+		VALUES(MYTYDEE_SEQ.NEXTVAL, #{user_no}, 'D', #{tiny_title}, 0, #{tiny_content}, null, SYSDATE)
+	</insert>
+	
+	<insert id="insertVision" parameterType="VisionDto">
+		INSERT INTO MYTYDEE_VISION
+		VALUES(MYTYDEE_VISION_SEQ.NEXTVAL, #{user_no}, #{vision_text}, SYSDATE)
+	</insert>
+	<select id="selectListVision" parameterType="int" resultType="VisionDto">
+		SELECT VISION_NO, USER_NO, VISION_TEXT, VISION_REGDATE
+		FROM (SELECT VISION_NO, USER_NO, VISION_TEXT, VISION_REGDATE
+				FROM MYTYDEE_VISION
+				WHERE USER_NO = #{user_no}
+				ORDER BY VISION_NO DESC)
+	<![CDATA[
+		WHERE ROWNUM <= 5
+	]]>
+	</select>
+	<select id="selectOneVision" parameterType="int" resultType="VisionDto">
+		SELECT VISION_NO, USER_NO, VISION_TEXT, VISION_REGDATE
+		FROM MYTYDEE_VISION
+		WHERE VISION_NO = #{vision_no}
+	</select>
+	<delete id="deleteVision" parameterType="int">
+		DELETE FROM MYTYDEE_VISION
+		WHERE VISION_NO = #{vision_no}
+	</delete>
+</mapper>

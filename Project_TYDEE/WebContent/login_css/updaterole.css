@@ -1,0 +1,94 @@
+@charset "EUC-KR";
+:root {
+  /*color*/
+  --color-white: #ffffff;
+  --color-black: #212121;
+  --color-gray: #f4f4f4;
+  --color-dark-gray: #dddddd;
+
+  /*font size*/
+  --font-large: 36px;
+  --font-regular: 16px;
+  --font-small: 12px;
+
+  /*font weight*/
+  --weight-bold: 700;
+  --weight-regular: 500;
+  --weight-thin: 300;
+
+  /*Size*/
+  --size-border-radius: 13px;
+}
+
+/*universal tags*/
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  cursor: default;
+  color: var(--color-black);
+}
+
+a {
+  margin: 0;
+  text-decoration: none;
+  color: var(--color-black);
+}
+ul,
+li {
+  list-style: none;
+  padding-left: 0;
+}
+
+input {
+  background-color: transparent;
+  cursor: pointer;
+  font-size: var(--font-regular);
+  color: var(--color-dark-gray);
+  margin: 10px 6px;
+  font-weight: var(--weight-bold);
+  padding: 4px 6px;
+  border: 1.5px solid var(--color-dark-gray);
+  border-radius: 4px;
+  position: relative;
+}
+.input {
+  display: flex;
+  flex-direction: row;
+}
+.now__grade {
+  padding: 20px 80px 0 70px;
+}
+.change__grade {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+.myrole {
+  display: flex;
+}
+.myrole > span {
+  padding-top: 6px;
+}
+.inputs {
+  padding: 10px 0 0 60px;
+}
+
+input:hover {
+  background-color: var(--color-dark-gray);
+  color: var(--color-white);
+  transition: all ease 0.3s 0s;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 8%;
+  left: 35%;
+  width: 400px;
+  height: 200px;
+  background-color: white;
+  border-radius: 13px 13px 13px 13px;
+  box-shadow: 10px 4px 30px rgba(0, 0, 0, 0.29);
+}
