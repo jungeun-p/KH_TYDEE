@@ -2,32 +2,31 @@ package com.tydee.dto;
 
 import java.util.Date;
 
-public class ItemPurchaseDto {
-	private int purhcase_no;
+public class ItemOrderDto {
+	private int order_no;
 	private int user_no;
 	private int item_no;
 	private int item_quan;
-	private Date purchase_regdate;
+	private Date order_regdate;
 	private String item_title;
 	private int item_price;
 	
-	public ItemPurchaseDto() {}
-	public ItemPurchaseDto(int purhcase_no, int user_no, int item_no, int item_quan, Date purchase_regdate,
-			String item_title, int item_price) {
-		this.purhcase_no = purhcase_no;
+	public ItemOrderDto() {}
+	public ItemOrderDto(int order_no, int user_no, int item_no, int item_quan, Date order_regdate, String item_title,
+			int item_price) {
+		this.order_no = order_no;
 		this.user_no = user_no;
 		this.item_no = item_no;
 		this.item_quan = item_quan;
-		this.purchase_regdate = purchase_regdate;
+		this.order_regdate = order_regdate;
 		this.item_title = item_title;
 		this.item_price = item_price;
 	}
-	
-	public int getPurhcase_no() {
-		return purhcase_no;
+	public int getOrder_no() {
+		return order_no;
 	}
-	public void setPurhcase_no(int purhcase_no) {
-		this.purhcase_no = purhcase_no;
+	public void setOrder_no(int order_no) {
+		this.order_no = order_no;
 	}
 	public int getUser_no() {
 		return user_no;
@@ -47,11 +46,11 @@ public class ItemPurchaseDto {
 	public void setItem_quan(int item_quan) {
 		this.item_quan = item_quan;
 	}
-	public Date getPurchase_regdate() {
-		return purchase_regdate;
+	public Date getOrder_regdate() {
+		return order_regdate;
 	}
-	public void setPurchase_regdate(Date purchase_regdate) {
-		this.purchase_regdate = purchase_regdate;
+	public void setOrder_regdate(Date order_regdate) {
+		this.order_regdate = order_regdate;
 	}
 	public String getItem_title() {
 		return item_title;
@@ -65,4 +64,5 @@ public class ItemPurchaseDto {
 	public void setItem_price(int item_price) {
 		this.item_price = item_price;
 	}
+	
 }
