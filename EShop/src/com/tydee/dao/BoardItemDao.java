@@ -22,6 +22,19 @@ public class BoardItemDao extends SqlMapConfig {
 		}
 		return itemList;
 	}
+	public List<BoardItemDto> selectListSomeY(String item_category){
+		SqlSession session = null;
+		List<BoardItemDto> itemList = null;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			itemList = session.selectList(namespace+"selectListSomeY", item_category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return itemList;
+	}
 	public BoardItemDto selectOne(int item_no) {
 		SqlSession session = null;
 		BoardItemDto dto = null;
