@@ -93,8 +93,6 @@ public class ItemBasketController extends HttpServlet {
 			int totalPrice = dao.totalPrice(user_no);
 			request.setAttribute("totalPrice", totalPrice);
 			dispatch("boarditem_basket.jsp", request, response);
-		} else if (command.equals("order")) {
-			
 		}
 	}
 	protected void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
