@@ -50,7 +50,7 @@ width: 200px;
 				<a href="item.do?command=list"><span class="tydee__hashtag">All</span></a>
 				<c:if test="${!empty categoryList }">
 					<c:forEach items="${categoryList }" var="category">
-						<a href="item.do?command=list&item_category=${category.item_category}"><span class="tydee__hashtag">${category.item_category}</span></a>
+						<a href="item.do?command=categoryList&item_category=${category.item_category}"><span class="tydee__hashtag">${category.item_category}</span></a>
 					</c:forEach>
 				</c:if>
 			</div>
