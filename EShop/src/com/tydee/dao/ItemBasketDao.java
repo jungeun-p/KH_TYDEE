@@ -70,4 +70,17 @@ public class ItemBasketDao extends SqlMapConfig {
 		}
 		return list;
 	}
+	public int totalPrice(int user_no) {
+		SqlSession session = null;
+		int totalPrice = 0;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			totalPrice = session.selectOne(namespace+"totalPrice", user_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return totalPrice;
+	}
 }

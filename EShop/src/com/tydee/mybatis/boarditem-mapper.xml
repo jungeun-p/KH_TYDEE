@@ -8,6 +8,13 @@
 		WHERE ITEM_ACTIVE = 'Y'
 		ORDER BY ITEM_NO DESC
 	</select>
+	<select id="selectListSomeY" parameterType="String" resultType="BoardItemDto">
+		SELECT ITEM_NO, ITEM_CATEGORY, ITEM_TITLE, ITEM_CONTENT, ITEM_IMAGE, ITEM_PRICE, ITEM_REGDATE, ITEM_ACTIVE, ITEM_QUAN
+		FROM BOARD_ITEM
+		WHERE ITEM_ACTIVE = 'Y'
+		AND ITEM_CATEGORY = #{item_category}
+		ORDER BY ITEM_NO DESC
+	</select>
 	<select id="selectOne" parameterType="int" resultType="BoardItemDto">
 		SELECT ITEM_NO, ITEM_CATEGORY, ITEM_TITLE, ITEM_CONTENT, ITEM_IMAGE, ITEM_PRICE, ITEM_REGDATE, ITEM_ACTIVE, ITEM_QUAN
 		FROM BOARD_ITEM

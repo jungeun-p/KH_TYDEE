@@ -90,6 +90,8 @@ public class ItemBasketController extends HttpServlet {
 		} else if (command.equals("list")) {
 			List<ItemBasketDto> list = dao.selectList(user_no);
 			request.setAttribute("list", list);
+			int totalPrice = dao.totalPrice(user_no);
+			request.setAttribute("totalPrice", totalPrice);
 			dispatch("boarditem_basket.jsp", request, response);
 		} else if (command.equals("order")) {
 			

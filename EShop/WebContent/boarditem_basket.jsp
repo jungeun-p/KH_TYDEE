@@ -90,8 +90,8 @@ width: 200px;
 	</div>
 	<div class="total__price">
 		<button class="goToList" onclick="location.href='item.do?command=list'">돌아가기</button>
-		<span></span>
-		<button class="goOrder" onclick="">주문하기</button>
+		<span id="total_price">${totalPrice gt 50000 ? totalPrice : totalPrice + 3000 }</span>
+		<button class="goOrder" onclick="location.href='order.do?command=ready&user_no=${loginuser.user_no}'">주문하기</button>
 	</div>
 	<script type="text/javascript">
 		// Select your input element.

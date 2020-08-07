@@ -53,11 +53,11 @@
 		<url-pattern>/address.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>itempurchase</servlet-name>
-		<servlet-class>com.tydee.controller.ItemPurchaseController</servlet-class>
+		<servlet-name>itemorder</servlet-name>
+		<servlet-class>com.tydee.controller.ItemOrderController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>itempurchase</servlet-name>
-		<url-pattern>/purchase.do</url-pattern>
+		<servlet-name>itemorder</servlet-name>
+		<url-pattern>/order.do</url-pattern>
 	</servlet-mapping>
 </web-app>

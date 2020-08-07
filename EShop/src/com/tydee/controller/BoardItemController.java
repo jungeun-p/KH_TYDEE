@@ -50,6 +50,13 @@ public class BoardItemController extends HttpServlet {
 			List<BoardItemDto> categoryList = dao.selectCategory();
 			request.setAttribute("categoryList", categoryList);
 			dispatch("boarditem_list.jsp", request, response);
+		} else if (command.equals("categoryList")) {
+			String item_category = request.getParameter("item_category");
+			List<BoardItemDto> itemList = dao.selectListSomeY(item_category);
+			request.setAttribute("itemList", itemList);
+			List<BoardItemDto> categoryList = dao.selectCategory();
+			request.setAttribute("categoryList", categoryList);
+			dispatch("boarditem_list.jsp", request, response);
 		} else if (command.equals("detail")) {
 			 int item_no = Integer.parseInt(request.getParameter("item_no"));
 			 BoardItemDto dto = dao.selectOne(item_no);

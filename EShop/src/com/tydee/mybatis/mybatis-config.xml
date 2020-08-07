@@ -8,7 +8,7 @@
 	<typeAliases>
 		<typeAlias type="com.tydee.dto.BoardItemDto" alias="BoardItemDto"/>
 		<typeAlias type="com.tydee.dto.ItemBasketDto" alias="ItemBasketDto"/>
-		<typeAlias type="com.tydee.dto.ItemPurchaseDto" alias="ItemPurchaseDto"/>
+		<typeAlias type="com.tydee.dto.ItemOrderDto" alias="ItemOrderDto"/>
 		<typeAlias type="com.tydee.dto.ItemReviewDto" alias="ItemReviewDto"/>
 		<typeAlias type="com.tydee.dto.UserAddressDto" alias="UserAddressDto"/>
 		<typeAlias type="com.tydee.dto.UserInfoDto" alias="UserInfoDto"/>
