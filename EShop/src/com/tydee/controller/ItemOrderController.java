@@ -2,6 +2,7 @@ package com.tydee.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +18,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 
 import com.tydee.dao.ItemBasketDao;
+import com.tydee.dao.ItemOrderDao;
+import com.tydee.dao.UserAddressDao;
 import com.tydee.dto.ItemBasketDto;
+import com.tydee.dto.ItemOrderDto;
 import com.tydee.dto.UserInfoDto;
 
 /**
@@ -51,15 +55,18 @@ public class ItemOrderController extends HttpServlet {
 		UserInfoDto loginuser = (UserInfoDto) session.getAttribute("loginuser");
 		int user_no = loginuser.getUser_no();
 		email = loginuser.getUser_id();
+		ItemOrderDao iodao = new ItemOrderDao();
+		ItemBasketDao ibdao = new ItemBasketDao();
 		
 		String command = request.getParameter("command");
 		if (command.equals("ready")) {
-			ItemBasketDao ibdao = new ItemBasketDao();
 			List<ItemBasketDto> list = ibdao.selectList(user_no);
 			request.setAttribute("list", list);
 			int totalPrice = ibdao.totalPrice(user_no);
 			request.setAttribute("totalPrice", totalPrice);
 			dispatch("boarditem_order.jsp", request, response);
+		} else if (command.equals("directorder")) {
+			response.getWriter().append("공사중");
 		} else if (command.equals("order")) {
 	        merchant_uid = makeMerchant_uid();
 			user_name = request.getParameter("user_name");
@@ -70,6 +77,10 @@ public class ItemOrderController extends HttpServlet {
 			item_lead_name = request.getParameter("item_lead_name");
 			String js = kakaoPayJS();
 			request.setAttribute("merchant_uid", merchant_uid);
+			request.setAttribute("item_lead_name", item_lead_name);
+			request.setAttribute("item_total_price", total_price);
+			request.setAttribute("address_no", request.getParameter("address_no"));
+			System.out.println(request.getParameter("address_no"));
 			request.setAttribute("js", js);
 			dispatch("boarditem_kakaopay.jsp", request, response);
 		} else if (command.equals("newaddrorder")) {
@@ -82,15 +93,46 @@ public class ItemOrderController extends HttpServlet {
 			item_lead_name = request.getParameter("item_lead_name");
 			String js = kakaoPayJS();
 			request.setAttribute("merchant_uid", merchant_uid);
+			request.setAttribute("item_lead_name", item_lead_name);
+			request.setAttribute("item_total_price", total_price);
+			request.setAttribute("address_no", new UserAddressDao().selectRecent(user_no).get(0).getAddress_no());
 			request.setAttribute("js", js);
 			dispatch("boarditem_kakaopay.jsp", request, response);
 		} else if (command.equals("result")) {
 			dispatch("boarditem_result.jsp", request, response);
 		} else if (command.equals("insert")) {
-			// basket에 있던 리스트들 order 테이블로 넘기기
+			List<ItemBasketDto> list = ibdao.selectList(user_no);
+			String m_uid = (String) request.getAttribute("merchant_uid");
+			String i_title = (String) request.getAttribute("item_lead_title");
+			int address_no = (int) request.getAttribute("address_no");
+			// null pointer exception
+			int item_total_price = (int) request.getAttribute("item_total_price");
+			List<ItemOrderDto> insertlist = new ArrayList<ItemOrderDto>();
+			for (ItemBasketDto dto : list) {
+				ItemOrderDto insertone = new ItemOrderDto();
+				insertone.setOrder_title(i_title);
+				insertone.setUser_no(user_no);
+				insertone.setAddress_no(address_no);
+				insertone.setMerchant_uid(m_uid);
+				insertone.setItem_no(dto.getItem_no());
+				insertone.setItem_quan(dto.getItem_quan());
+				insertone.setItem_price(dto.getItem_price());
+				insertone.setItem_total_price(item_total_price);
+				insertlist.add(insertone);
+			}
+			int res = iodao.insertList(insertlist);
 			dispatch("basket.do?command=deleteAll", request, response);
 		} else if (command.equals("orderList")) {
-			
+			List<ItemOrderDto> list = iodao.selectList(user_no);
+			request.setAttribute("list", list);
+			dispatch("boarditem_order_list", request, response);
+			// 주문 목록
+		} else if (command.equals("orderOne")) {
+			// 주문 목록 detail
+			int order_no = Integer.parseInt(request.getParameter("order_no"));
+			ItemOrderDto dto = iodao.selectOne(order_no);
+			request.setAttribute("dto", dto);
+			dispatch("boarditem_order_detail.jsp", request, response);
 		}
 	}
 
@@ -127,13 +169,14 @@ public class ItemOrderController extends HttpServlet {
 				+ "msg += '상점 거래내역 ID : '+rsp.merchant_uid;"
 				+ "msg += '결제 금액 : ' + rsp.paid_amount;"
 				+ "msg += '결제 상품 : ' + rsp.name;"
-				+ "alert(msg);"
+				+ "localStorage.setItem('msg', msg);"
+				+ "location.replace('order.do?command=insert');"
 				+ "} else {"
 				+ "var msg = '결제에 실패하였습니다.';"
 				+ "msg += '에러 내용 : ' + rsp.error_msg;"
-				+ "alert(msg);"
-				+ "}"
+				+ "localStorage.setItem('msg', msg);"
 				+ "location.replace('order.do?command=result');"
+				+ "}"
 				+ "});"
 				+ "</script>";
 		return js;

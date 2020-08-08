@@ -29,5 +29,6 @@
 		<mapper resource="com/tydee/mybatis/boarditem-mapper.xml"/>
 		<mapper resource="com/tydee/mybatis/itembasket-mapper.xml"/>
 		<mapper resource="com/tydee/mybatis/useraddress-mapper.xml"/>
+		<mapper resource="com/tydee/mybatis/itemorder-mapper.xml"/>
 	</mappers>
 </configuration>

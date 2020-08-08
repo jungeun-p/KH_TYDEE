@@ -72,9 +72,11 @@ public class UserAddressController extends HttpServlet {
 			String user_postcode = request.getParameter("user_postcode");
 			UserAddressDto dto = new UserAddressDto(user_no, user_name, user_phone, user_address_first, user_address_second, user_address_extra, user_postcode);
 			int res = dao.insertNew(dto);
+			int address_no = dao.selectRecent(user_no).get(0).getAddress_no();
 			request.setAttribute("user_name", user_name);
 			request.setAttribute("user_phone", user_phone);
 			request.setAttribute("user_postcode", user_postcode);
+			request.setAttribute("address_no", address_no);
 			dispatch("order.do?command=newaddrorder", request, response); // pay로 이동
 		}
 		

@@ -10,11 +10,13 @@ public class ItemOrderDto {
 	private String merchant_uid;
 	private int item_no;
 	private int item_quan;
+	private int item_price;
 	private int item_total_price;
 	private Date order_regdate;
 	public ItemOrderDto() {}
 	public ItemOrderDto(int order_no, String order_title, int user_no, int address_no, String merchant_uid, int item_no,
-			int item_quan, int item_total_price, Date order_regdate) {
+			int item_quan, int item_price, int item_total_price, Date order_regdate) {
+		super();
 		this.order_no = order_no;
 		this.order_title = order_title;
 		this.user_no = user_no;
@@ -22,8 +24,15 @@ public class ItemOrderDto {
 		this.merchant_uid = merchant_uid;
 		this.item_no = item_no;
 		this.item_quan = item_quan;
+		this.item_price = item_price;
 		this.item_total_price = item_total_price;
 		this.order_regdate = order_regdate;
+	}
+	public int getItem_price() {
+		return item_price;
+	}
+	public void setItem_price(int item_price) {
+		this.item_price = item_price;
 	}
 	public int getOrder_no() {
 		return order_no;
