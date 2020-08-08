@@ -7,20 +7,33 @@ public class UserAddressDto {
 	private String user_phone;
 	private String user_address_first;
 	private String user_address_second;
-	private String user_postalcode;
+	private String user_address_extra;
+	private String user_postcode;
 	
 	public UserAddressDto() {}
+	public UserAddressDto(int user_no, String user_name, String user_phone, String user_address_first,
+			String user_address_second, String user_address_extra, String user_postcode) {
+		super();
+		this.user_no = user_no;
+		this.user_name = user_name;
+		this.user_phone = user_phone;
+		this.user_address_first = user_address_first;
+		this.user_address_second = user_address_second;
+		this.user_address_extra = user_address_extra;
+		this.user_postcode = user_postcode;
+	}
+
 	public UserAddressDto(int address_no, int user_no, String user_name, String user_phone, String user_address_first,
-			String user_address_second, String user_postalcode) {
+			String user_address_second, String user_address_extra, String user_postcode) {
 		this.address_no = address_no;
 		this.user_no = user_no;
 		this.user_name = user_name;
 		this.user_phone = user_phone;
 		this.user_address_first = user_address_first;
 		this.user_address_second = user_address_second;
-		this.user_postalcode = user_postalcode;
+		this.user_address_extra = user_address_extra;
+		this.user_postcode = user_postcode;
 	}
-	
 	public int getAddress_no() {
 		return address_no;
 	}
@@ -57,10 +70,17 @@ public class UserAddressDto {
 	public void setUser_address_second(String user_address_second) {
 		this.user_address_second = user_address_second;
 	}
-	public String getUser_postalcode() {
-		return user_postalcode;
+	public String getUser_address_extra() {
+		return user_address_extra;
 	}
-	public void setUser_postalcode(String user_postalcode) {
-		this.user_postalcode = user_postalcode;
+	public void setUser_address_extra(String user_address_extra) {
+		this.user_address_extra = user_address_extra;
 	}
+	public String getUser_postcode() {
+		return user_postcode;
+	}
+	public void setUser_postcode(String user_postcode) {
+		this.user_postcode = user_postcode;
+	}
+	
 }

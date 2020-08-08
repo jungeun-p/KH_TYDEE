@@ -15,6 +15,10 @@
 		DELETE FROM ITEM_BASKET
 		WHERE BASKET_NO = #{basket_no}
 	</delete>
+	<delete id="deleteAll" parameterType="int">
+		DELETE FROM ITEM_BASKET
+		WHERE USER_NO = #{user_no}
+	</delete>
 	<select id="selectList" parameterType="int" resultType="ItemBasketDto">
 		SELECT BASKET_NO, b.USER_NO, ITEM_NO, b.ITEM_QUAN, ITEM_TITLE, ITEM_PRICE, ITEM_IMAGE
 		FROM ITEM_BASKET b
