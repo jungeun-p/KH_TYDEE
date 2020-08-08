@@ -22,6 +22,8 @@
     <h3>toast ui editor TEST</h3>
     <a href="toast_example.jsp">toast ui editor</a><br />
     <a href="toast_editor.jsp">toast ui editor - servlet</a><br />
+    <h3>kakao pay iamport test</h3>
+    <a href="kakaopay_list.jsp">kakao pay start</a><br />
 </body>
 
 </html>
