@@ -5,6 +5,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	response.setHeader("Pragma", "no-cache");
 	response.setHeader("Cache-control", "no-store");
@@ -17,8 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://kit.fontawesome.com/3914a9940d.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/3914a9940d.js" crossorigin="anonymous"></script>
 <style>
 img {
 width: 200px;
@@ -28,6 +28,7 @@ width: 200px;
 <%
 	List<BoardItemDto> itemList = (List<BoardItemDto>) request.getAttribute("itemList");
 	UserInfoDto loginuser = (UserInfoDto) session.getAttribute("loginuser");
+	int user_no = loginuser.getUser_no();
 %>
 <body>
 	<div class="userinfo">
@@ -72,7 +73,7 @@ width: 200px;
 		</span>
 	</div><hr />
 	</div>
-	<form action="order.do?command=order&user_no=${loginuser.user_no }" method="POST">
+	<form method="POST">
 	<div class="order__info">
 		<div class="order__menu">
 			<p><label for="name">name</label></p>
@@ -81,26 +82,29 @@ width: 200px;
 		</div>
 			<div class="order__contents">
 				<div class="order__info_name">
-					<input type="text" id="name" name="user_name"/>
+					<input type="text" id="name" name="user_name" required="required"/>
 				</div>
 				<div class="order__info_phone">
-					<input type="text" id="phone_first" onkeypress="onlyNumber();" /><span>-</span>
-					<input type="text" id="phone_second" onkeypress="onlyNumber();" /><span>-</span>
-					<input type="text" id="phone_third" onkeypress="onlyNumber();" />
+					<input type="text" id="phone_first" onkeypress="onlyNumber();" required="required"/><span>-</span>
+					<input type="text" id="phone_second" onkeypress="onlyNumber();" required="required"/><span>-</span>
+					<input type="text" id="phone_third" onkeypress="onlyNumber();" required="required"/>
 				</div>
 				<div class="order__info_address">
 					<div class="address_select">
 						<input type="radio" name="address_type" id="recent" /><label for="recent">최근 주소록</label>
 						<input type="radio" name="address_type" id="new" /><label for="new">새 주소록</label>
 					</div>
-					<input type="text" id="sample6_postcode" name="user_postcode" placeholder="우편번호"  onkeypress="onlyNumber();">
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" id="sample6_address" name="user_address_first" placeholder="주소"><br>
-					<input type="text" id="sample6_detailAddress" name="user_address_second" placeholder="상세주소">
-					<input type="text" id="sample6_extraAddress" name="user_address_extra" placeholder="참고항목">
+					<input type="text" id="postcode" name="user_postcode" placeholder="우편번호" required="required" onkeypress="onlyNumber();">
+					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="text" id="address" name="user_address_first" placeholder="주소" required="required"><br>
+					<input type="text" id="detailAddress" name="user_address_second" placeholder="상세주소">
+					<input type="text" id="extraAddress" name="user_address_extra" placeholder="참고항목">
 				</div>
 			</div>
 		<input type="hidden" name="total_price" value="${totalPrice gt 50000 ? totalPrice : totalPrice + 3000 }" />
+		<input type="hidden" name="item_number" value="${fn:length(list) -1 }" />
+		<input type="hidden" name="item_name" value="${list[1].item_title }" />
+		<input type="hidden" name="email" value="${loginuser.user_id }" />
 	</div>
 	<div class="order__buttons">
 		<input type="button" value="취소" onclick="location.href='item.do?command=list'" />
@@ -110,6 +114,37 @@ width: 200px;
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	let recent = document.getElementById("recent");
+	let newradio = document.getElementById("new");
+	recent.addEventListener("change", () => {
+		if (recent.checked == true){
+			let xhr = new XMLHttpRequest();
+			xhr.open("POST", "address.do?command=select");
+			xhr.send();
+			xhr.onreadystatechange = () => {
+				if (xhr.readyState == 4 && xhr.status == 200){
+					let text = "";
+					if (xhr.responseText != null || xhr.responseText != ""){
+						text = JSON.parse(xhr.responseText);
+					}
+					console.log(text);
+					if(text == null || text == ""){
+						alert("최근 저장된 주소록이 없습니다");
+						newradio.checked = true;
+					} else {
+						let address1 = document.getElementById("address");
+						address1.value = text.user_address_first;
+						let address2 = document.getElementById("detailAddress");
+						address2.value = text.user_address_second;
+						let address3 = document.getElementById("extraAddress");
+						address3.value = text.user_address_extra;
+						let postcode = document.getElementById("postcode");
+						postcode.value = text.user_postcode;
+					}
+				}
+			}
+		}
+	});
 	function readyToSubmit(){
 		let number1 = document.getElementById("phone_first").value;
 		let number2 = document.getElementById("phone_second").value;
@@ -120,15 +155,38 @@ width: 200px;
 		phone.setAttribute("value",number1+number2+number3);
 		let where = document.getElementsByTagName("form")[0];
 		where.appendChild(phone);
+		let address1 = document.getElementById("address").value;
+		let address2 = document.getElementById("detailAddress").value;
+		let address3 = document.getElementById("extraAddress").value;
+		let address = document.createElement("input");
+		address.setAttribute("type", "hidden");
+		address.setAttribute("name","address");
+		address.setAttribute("value", address1 + " " + address2 + " " + address3);
+		where.appendChild(address);
+		let item_name = document.getElementsByName("item_name")[0].value;
+		let item_number = document.getElementsByName("item_number")[0].value;
+		let item_lead_name = document.createElement("input");
+		item_lead_name.setAttribute("type","hidden");
+		item_lead_name.setAttribute("name","item_lead_name");
+		if (Number(item_number) == 1){
+			item_lead_name.setAttribute("value", item_name);			
+		} else {
+			item_lead_name.setAttribute("value", item_name + " 외 " + item_number + "종");
+		}
+		where.appendChild(item_lead_name);
+		
+		let recentradio = document.getElementById("recent");
+		if (recentradio.checked == true) {
+			where.setAttribute("action", "order.do?command=order");
+		} else {
+			where.setAttribute("action", "address.do?command=insert");
+		}
 	}
 	function onlyNumber(){
-	
 	    if((event.keyCode<48)||(event.keyCode>57))
-	
 	       event.returnValue=false;
-	
 	}
-    function sample6_execDaumPostcode() {
+    function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -161,17 +219,17 @@ width: 200px;
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                    document.getElementById("extraAddress").value = extraAddr;
                 
                 } else {
-                    document.getElementById("sample6_extraAddress").value = '';
+                    document.getElementById("extraAddress").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
+                document.getElementById("detailAddress").focus();
             }
         }).open();
     }

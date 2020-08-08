@@ -57,6 +57,22 @@ public class ItemBasketDao extends SqlMapConfig {
 		}
 		return res;
 	}
+	public int deleteAll(int user_no) {
+		SqlSession session = null;
+		int res = 0;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.delete(namespace+"deleteAll", user_no);
+			if (res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return res;
+	}
 	public List<ItemBasketDto> selectList(int user_no){
 		SqlSession session = null;
 		List<ItemBasketDto> list = null;

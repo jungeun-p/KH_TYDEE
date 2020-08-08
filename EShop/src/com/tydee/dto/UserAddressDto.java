@@ -11,6 +11,18 @@ public class UserAddressDto {
 	private String user_postcode;
 	
 	public UserAddressDto() {}
+	public UserAddressDto(int user_no, String user_name, String user_phone, String user_address_first,
+			String user_address_second, String user_address_extra, String user_postcode) {
+		super();
+		this.user_no = user_no;
+		this.user_name = user_name;
+		this.user_phone = user_phone;
+		this.user_address_first = user_address_first;
+		this.user_address_second = user_address_second;
+		this.user_address_extra = user_address_extra;
+		this.user_postcode = user_postcode;
+	}
+
 	public UserAddressDto(int address_no, int user_no, String user_name, String user_phone, String user_address_first,
 			String user_address_second, String user_address_extra, String user_postcode) {
 		this.address_no = address_no;

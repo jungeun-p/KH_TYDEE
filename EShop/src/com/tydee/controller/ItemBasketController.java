@@ -93,6 +93,9 @@ public class ItemBasketController extends HttpServlet {
 			int totalPrice = dao.totalPrice(user_no);
 			request.setAttribute("totalPrice", totalPrice);
 			dispatch("boarditem_basket.jsp", request, response);
+		} else if (command.equals("deleteAll")) {
+			int res = dao.deleteAll(user_no);
+			dispatch("boarditem_success.jsp", request, response); // pay 다음의 일임
 		}
 	}
 	protected void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
