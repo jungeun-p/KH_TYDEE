@@ -85,7 +85,7 @@ width: 200px;
 										<input type="button" value="+" onclick="quan_plus()"/>
 									</div>
 									<input type="submit" value="장바구니" />
-									<input type="button" value="바로 구매" />
+									<input type="button" value="바로 구매" onclick="goToOrder()" />
 								</div>
 							</div>
 							<div class="modal__viewer">
@@ -125,6 +125,10 @@ function quan_plus(){
 	let quantity = where.querySelector("[type=number]").value; 
 	quantity = Number(quantity) + 1;
 	where.querySelector("[type=number]").value = quantity;
+}
+function goToOrder(){
+	let command = document.querySelector("[name=command]");
+	command.setAttribute("value", "directorder");
 }
 </script>
 </body>

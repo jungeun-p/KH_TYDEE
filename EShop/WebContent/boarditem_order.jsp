@@ -140,6 +140,12 @@ width: 200px;
 						address3.value = text.user_address_extra;
 						let postcode = document.getElementById("postcode");
 						postcode.value = text.user_postcode;
+						let add_no = document.createElement("input");
+						add_no.setAttribute("type","hidden");
+						add_no.setAttribute("name", "address_no");
+						add_no.setAttribute("value", text.address_no);
+						let where = document.getElmentsByTagName("form")[0];
+						where.appendChild(add_no);
 					}
 				}
 			}
