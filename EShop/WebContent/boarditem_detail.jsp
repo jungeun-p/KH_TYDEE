@@ -57,7 +57,7 @@ width: 200px;
 			<c:if test="${loginuser.user_role eq 'ADMIN'}">
 				<a href="item.do?command=insert"><p class="wrtie__eshop"><i class="fas fa-plus"></i></p></a>
 			</c:if>
-			<c:if test="${loginuser.user_role ne 'ADMIN' or empty loginuser }">
+			<c:if test="${loginuser.user_role ne 'ADMIN' and !empty loginuser }">
 				<a href="basket.do?command=list"><p class="cart__eshop"><i class="fas fa-shopping-cart"></i></p></a>
 			</c:if>
 		</div>
@@ -101,8 +101,8 @@ width: 200px;
 			</div> <!-- content -->
 		</div> <!-- detailinfo -->
 	</div> <!-- tydee__eshop -->
-<script src="js/boarditem_detail.js"></script>
 <script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.js"></script>
+<script src="shop_js/boarditem_detail_quantity.js"></script>
 <script>
 const viewer = new toastui.Editor({
 	el: document.querySelector('#viewer'),
@@ -110,25 +110,12 @@ const viewer = new toastui.Editor({
 	height: '500px',
 	initialValue: `${item.item_content}`
 });
-function quan_minus(){
-	let where = document.getElementsByClassName("item__quantity_value")[0];
-	let quantity = where.querySelector("[type=number]").value; 
-	if (quantity == 1){
-		return false;
-	} else {
-		quantity = Number(quantity) - 1;
-		where.querySelector("[type=number]").value = quantity;
-	}
-}
-function quan_plus(){
-	let where = document.getElementsByClassName("item__quantity_value")[0];
-	let quantity = where.querySelector("[type=number]").value; 
-	quantity = Number(quantity) + 1;
-	where.querySelector("[type=number]").value = quantity;
-}
 function goToOrder(){
 	let command = document.querySelector("[name=command]");
-	command.setAttribute("value", "directorder");
+	command.setAttribute("value", "directready");
+	let form = document.getElementsByTagName("form")[0];
+	form.setAttribute("action", "order.do");
+	form.submit();
 }
 </script>
 </body>

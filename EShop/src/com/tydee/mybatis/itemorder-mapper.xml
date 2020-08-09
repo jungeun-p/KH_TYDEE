@@ -4,7 +4,7 @@
 	<update id="insertList" parameterType="java.util.List">
 		<foreach collection="list" item="item" open="INSERT ALL " close=" SELECT * FROM DUAL " separator=" ">
 		INTO ITEM_ORDER
-		(ORDER_NO, ORDER_TITLE, USER_NO, ADDRESS_NO, MERCHANT_UID, ITEM_NO, ITEM_QUAN, ITEM_PRICE, ITEM_TOTAL_PRICE)
+		(ORDER_NO, ORDER_TITLE, USER_NO, ADDRESS_NO, MERCHANT_UID, ITEM_NO, ITEM_QUAN, ITEM_PRICE, ITEM_TOTAL_PRICE, ORDER_REGDATE)
 		VALUES(
 		ITEM_ORDER_SEQ.NEXTVAL,
 		#{item.order_title},
@@ -19,12 +19,13 @@
 		)
 		</foreach>
 	</update>
-	<select id="selectList" parameterType="int">
-		SELECT ORDER_NO, DISTINCT ORDER_TITLE, USER_NO, DISTINCT MERCHNAT_UID, ITEM_TOTAL_PRICE, ORDER_REGDATE
+	<select id="selectList" parameterType="int" resultType="ItemOrderDto">
+		SELECT DISTINCT ORDER_NO, ORDER_TITLE, USER_NO, ADDRESS_NO, MERCHANT_UID, ITEM_NO, ITEM_QUAN, ITEM_PRICE, ITEM_TOTAL_PRICE, ORDER_REGDATE
 		FROM ITEM_ORDER
 		WHERE USER_NO = #{user_no}
+		ORDER BY ORDER_NO DESC
 	</select>
-	<select id="selectOne" parameterType="int">
+	<select id="selectOne" parameterType="int" resultType="ItemOrderDto">
 		SELECT ORDER_NO, ORDER_TITLE, USER_NO, ADDRESS_NO, MERCHANT_UID, ITEM_NO, ITEM_QUAN, ITEM_PRICE, ITEM_TOTAL_PRICE, ORDER_REGDATE
 		FROM ITEM_ORDER
 		WHERE ORDER_NO = #{order_no}

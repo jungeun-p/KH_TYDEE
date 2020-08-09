@@ -45,7 +45,7 @@
             <img id="frame" />
         </section>
     </form>
-    <script type="text/javascript" src="js/boarditem_popup.js"></script>
+    <script type="text/javascript" src="shop_js/boarditem_insert_popup.js"></script>
     <!-- mytydee_popup.js?와 동일한 내용의 파일입니다 통일 가능할 듯 -->
 </body>
 

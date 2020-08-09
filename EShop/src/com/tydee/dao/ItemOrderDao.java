@@ -38,17 +38,17 @@ public class ItemOrderDao extends SqlMapConfig {
 		}
 		return list;
 	}
-	public ItemOrderDto selectOne(int order_no) {
+	public List<ItemOrderDto> selectOne(int order_no) {
 		SqlSession session = null;
-		ItemOrderDto dto = null;
+		List<ItemOrderDto> list = null;
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			dto = session.selectOne(namespace+"selectOne", order_no);
+			list = session.selectList(namespace+"selectOne", order_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return dto;
+		return list;
 	}
 }

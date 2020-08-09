@@ -22,6 +22,19 @@ public class UserAddressDao extends SqlMapConfig {
 		}
 		return dto;
 	}
+	public List<Integer> lastAddressNo() {
+		SqlSession session = null;
+		List<Integer> list = null;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"lastaddressno");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 	public int insertNew(UserAddressDto dto) {
 		SqlSession session = null;
 		int res = 0;

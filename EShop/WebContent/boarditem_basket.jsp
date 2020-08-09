@@ -91,11 +91,20 @@ width: 200px;
 	<div class="total__price">
 		<button class="goToList" onclick="location.href='item.do?command=list'">돌아가기</button>
 		<span id="total_price">
-			<fmt:formatNumber type="currency" value="${totalPrice gt 50000 ? totalPrice : (totalPrice eq 0 ? 0 : totalPrice + 3000) }"></fmt:formatNumber>
+			<fmt:formatNumber type="currency" value="${totalPrice ge 50000 ? totalPrice : (totalPrice eq 0 ? 0 : totalPrice + 3000) }"></fmt:formatNumber>
 		</span>
-		<button class="goOrder" onclick="location.href='order.do?command=ready&user_no=${loginuser.user_no}'">주문하기</button>
+		<button class="goOrder" onclick="priceCheck()">주문하기</button>
 	</div>
 	<script type="text/javascript">
+		function priceCheck(){
+			let span = document.getElementById("total_price");
+			if (Number(span.textContent) == 0){
+				alert("장바구니에 물건이 없습니다");
+				return false;
+			} else {
+				location.href="order.do?command=ready";
+			}
+		}
 		// Select your input element.
 		var numbers = document.querySelectorAll("[type=number]");
 		numbers.onkeydown = function(e) {
@@ -105,42 +114,7 @@ width: 200px;
 		        return false;
 		    }
 		} // 입력창에 문자나 기호 못 넣게 하는 코드
-		function quan_minus(no){
-			let where = document.getElementById(no);
-			let quantity = where.querySelector("[type=number]").value; 
-			if (quantity == 1){
-				return false;
-			} else {
-				quantity = Number(quantity) - 1;
-				where.querySelector("[type=number]").value = quantity;
-			}
-		}
-		function quan_plus(no){
-			let where = document.getElementById(no);
-			let quantity = where.querySelector("[type=number]").value; 
-			quantity = Number(quantity) + 1;
-			where.querySelector("[type=number]").value = quantity;
-		}
-		function quan_change(no){
-			let up = document.createElement("input");
-			up.setAttribute("type","hidden");
-			up.setAttribute("name","command");
-			up.setAttribute("value","update");
-			let where = document.getElementById(no);
-			let form = where.getElementsByTagName("form")[0];
-			form.appendChild(up);
-			form.submit();
-		}
-		function quan_delete(no){
-			let del = document.createElement("input");
-			del.setAttribute("type","hidden");
-			del.setAttribute("name","command");
-			del.setAttribute("value","delete");
-			let where = document.getElementById(no);
-			let form = where.getElementsByTagName("form")[0];
-			form.appendChild(del);
-			form.submit();
-		}
 	</script>
+	<script src="shop_js/boarditem_basket_quantity.js"></script>
 </body>
 </html>
