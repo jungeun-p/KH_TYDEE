@@ -12,6 +12,7 @@
 		<typeAlias type="com.tydee.dto.ItemReviewDto" alias="ItemReviewDto"/>
 		<typeAlias type="com.tydee.dto.UserAddressDto" alias="UserAddressDto"/>
 		<typeAlias type="com.tydee.dto.UserInfoDto" alias="UserInfoDto"/>
+		<typeAlias type="com.tydee.dto.ItemTotalDto" alias="TotalDto"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

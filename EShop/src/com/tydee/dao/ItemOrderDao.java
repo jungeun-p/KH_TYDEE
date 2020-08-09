@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.tydee.dto.ItemOrderDto;
+import com.tydee.dto.ItemTotalDto;
 import com.tydee.mybatis.SqlMapConfig;
 
 public class ItemOrderDao extends SqlMapConfig {
@@ -38,9 +39,9 @@ public class ItemOrderDao extends SqlMapConfig {
 		}
 		return list;
 	}
-	public List<ItemOrderDto> selectOne(int order_no) {
+	public List<ItemTotalDto> selectOne(int order_no) {
 		SqlSession session = null;
-		List<ItemOrderDto> list = null;
+		List<ItemTotalDto> list = null;
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			list = session.selectList(namespace+"selectOne", order_no);

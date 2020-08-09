@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	response.setHeader("Pragma", "no-cache");
 	response.setHeader("Cache-control", "no-store");
@@ -67,12 +68,14 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${list }" var="item">
-								<a href="item.do?command=detail&item_no=${item.order_no }">
+								<a href="order.do?command=orderOne&order_no=${item.order_no }">
 									<div class="modal">
 										<div class="modal__wrap">
 											<div class="modal__description">
 												<p class="modal__name">${item.order_title }</p>
-												<p class="modal__explain">${item.item_total_price }</p>
+												<p class="modal__explain"><fmt:setLocale value="ko_KR"/>
+												<fmt:formatNumber type="currency" value="${item.item_total_price}"></fmt:formatNumber></p>
+												<p class="modal__regdate">${item.order_regdate }</p>
 											</div>
 										</div>
 									</div>
