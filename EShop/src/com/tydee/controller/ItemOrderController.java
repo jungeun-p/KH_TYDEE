@@ -24,6 +24,7 @@ import com.tydee.dao.UserAddressDao;
 import com.tydee.dto.BoardItemDto;
 import com.tydee.dto.ItemBasketDto;
 import com.tydee.dto.ItemOrderDto;
+import com.tydee.dto.ItemTotalDto;
 import com.tydee.dto.UserInfoDto;
 
 /**
@@ -181,7 +182,9 @@ public class ItemOrderController extends HttpServlet {
 		} else if (command.equals("orderOne")) {
 			// 주문 목록 detail
 			int order_no = Integer.parseInt(request.getParameter("order_no"));
-			List<ItemOrderDto> list = iodao.selectOne(order_no);
+			List<ItemTotalDto> list = iodao.selectOne(order_no);
+			System.out.println("주문 상세보기 갯수 : " + list.size());
+			System.out.println("주문 상세보기 대표명 : "+list.get(0).getOrder_title());
 			request.setAttribute("list", list);
 			dispatch("boarditem_order_detail.jsp", request, response);
 		} else if (command.equals("eshopList")) {
@@ -220,8 +223,8 @@ public class ItemOrderController extends HttpServlet {
 				+ "'}, rsp => {"
 				+ "if (rsp.success){"
 				+ "var msg = '<h3>결제가 완료되었습니다.</h3>';"
-				+ "msg += '<p>상점 거래내역 ID : '+rsp.merchant_uid +'</p>';"
-				+ "msg += '<p>결제 금액 : ' + rsp.paid_amount +'</p>';"
+				+ "msg += '<p>상점 거래내역 ID : '+ rsp.merchant_uid +'</p>';"
+				+ "msg += '<p>결제 금액 : &#8361;'+ rsp.paid_amount.toLocaleString() +'</p>';"
 				+ "msg += '<p>결제 상품 : ' + rsp.name +'</p>';"
 				+ "localStorage.setItem('msg', msg);"
 				+ "location.replace('order.do?command=insert');"
