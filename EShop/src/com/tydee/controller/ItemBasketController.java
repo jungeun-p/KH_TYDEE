@@ -55,10 +55,10 @@ public class ItemBasketController extends HttpServlet {
 		if (command.equals("insert")) {
 			if (user_no == 0) {
 				String js = "<script type='text/javascript'>"
-						+ "alert('장바구니는 로그인 후 사용 가능합니다');"
+						+ "alert('장바구니는 로그인 후 이용 가능합니다');"
+						+ "location.href='item.do?command=list';"
 						+ "</script>";
 				response.getWriter().append(js);
-				dispatch("userinfo_login.jsp", request, response);
 			} else {
 				int item_no = Integer.parseInt(request.getParameter("item_no"));
 				List<ItemBasketDto> list = dao.selectList(user_no);
@@ -66,9 +66,9 @@ public class ItemBasketController extends HttpServlet {
 					if (dto.getItem_no() == item_no) {
 						String js = "<script type='text/javascript'>"
 								+ "alert('이미 장바구니에 있는 상품입니다');"
+								+ "location.href='item.do?command=list';"
 								+ "</script>";
 						response.getWriter().append(js);
-						dispatch("item.do?command=list", request, response);
 					}
 				}
 				int item_quan = Integer.parseInt(request.getParameter("item_quan"));
@@ -90,7 +90,7 @@ public class ItemBasketController extends HttpServlet {
 		} else if (command.equals("list")) {
 			List<ItemBasketDto> list = dao.selectList(user_no);
 			request.setAttribute("list", list);
-			int totalPrice = dao.totalPrice(user_no);
+			int totalPrice = dao.totalPrice(user_no).get(0) != null ? dao.totalPrice(user_no).get(0) : 0;
 			request.setAttribute("totalPrice", totalPrice);
 			dispatch("boarditem_basket.jsp", request, response);
 		} else if (command.equals("deleteAll")) {

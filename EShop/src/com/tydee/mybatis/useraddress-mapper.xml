@@ -14,4 +14,9 @@
 			ORDER BY ADDRESS_NO DESC)
 		WHERE ROWNUM = 1
 	</select>
+	<select id="lastaddressno" resultType="int">
+		SELECT ADDRESS_NO 
+		FROM (SELECT ADDRESS_NO FROM USER_ADDRESS ORDER BY ADDRESS_NO DESC)
+		WHERE ROWNUM = 1
+	</select>
 </mapper>

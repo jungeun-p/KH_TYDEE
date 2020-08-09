@@ -52,9 +52,11 @@ width: 200px;
 			</div>
 			<c:if test="${loginuser.user_role eq 'ADMIN'}">
 				<a href="item.do?command=insert"><p class="wrtie__eshop"><i class="fas fa-plus"></i></p></a>
+				<a href="item.do?command=eshopList"><p class="list__eshop"><i class="fas fa-bars"></i></p></a>
 			</c:if>
-			<c:if test="${loginuser.user_role ne 'ADMIN' or empty loginuser }">
+			<c:if test="${loginuser.user_role ne 'ADMIN' and !empty loginuser }">
 				<a href="basket.do?command=list"><p class="cart__eshop"><i class="fas fa-shopping-cart"></i></p></a>
+				<a href="order.do?command=orderList"><p class="list__order"><i class="fas fa-bars"></i></p></a>
 			</c:if>
 		</div>
 		<div class="listinfo">

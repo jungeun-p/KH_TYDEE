@@ -121,7 +121,7 @@ public class BoardItemController extends HttpServlet {
 			
 		} else if (command.equals("delete")) {
 			
-		} else if (command.equals("")) {
+		} else if (command.equals("eshopList")) {
 			
 		}
 	}

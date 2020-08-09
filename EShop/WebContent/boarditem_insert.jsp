@@ -16,12 +16,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://kit.fontawesome.com/3914a9940d.js"
-	crossorigin="anonymous"></script>
-	   <!-- Editor's Dependecy Style -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
-    <!-- Editor's Style -->
-    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+<script src="https://kit.fontawesome.com/3914a9940d.js" crossorigin="anonymous"></script>
+<!-- Editor's Dependecy Style -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
+<!-- Editor's Style -->
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 </head>
 <body>
 	<div class="userinfo">
@@ -61,7 +60,7 @@
 					<input type="number" name="item_price"  min="0" required="required" />
 					<div id="editor" name="item_content"></div>
 					<div class="item__upload">
-						<input type="button" value="업로드" onclick="makeapopup('eshop_popup.jsp')"/>
+						<input type="button" value="업로드" onclick="makeapopup('boarditem_insert_popup.jsp')"/>
 						<span>이미지 없음</span>
 					</div>
 				</div>
@@ -73,46 +72,8 @@
 		</div>
 	</div>
 <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-<script>
-function makeapopup(jspname){
-    let popupWidth = 400;
-    let popupHeight = 500;
-    let popupX = (window.screen.width / 2) - (popupWidth / 2);
-    let popupY = (window.screen.height / 2) - (popupHeight / 2);
-    let options = "top=" + popupY + ", left=" + popupX + ", width=" + popupWidth + ", height=" + popupHeight + ", status=no, menubar=no, toolbar=no, resizable=no";
-    window.open(jspname, "popup", options);
-}
-        const editor = new toastui.Editor({
-            el: document.querySelector('#editor'),
-            height: '500px',
-            initialEditType: 'markdown',
-            previewStyle: 'tab',
-            toolbarItems: [
-                'heading',
-                'bold',
-                'italic',
-                'strike',
-                'divider',
-                'hr',
-                'quote',
-                'ul',
-                'ol',
-                'divider',
-                'task',
-                'indent',
-                'outdent'
-            ]
-        });
-        editor.getMarkdown();
-
-        function contentHidden() {
-            let form = document.getElementsByTagName("form")[0];
-            let input = document.createElement("input");
-            input.setAttribute("type", "hidden");
-            input.setAttribute("name", "item_content")
-            input.setAttribute("value", editor.getMarkdown());
-            document.querySelector("#editor").append(input);
-        }
-</script>
+<script src="shop_js/boarditem_insert_tuieditor.js"></script>
+<script src="shop_js/boarditem_insert_makeapopup.js"></script>
+<script src="shop_js/boarditem_insert_makeapopup.js"></script>
 </body>
 </html>
