@@ -49,7 +49,7 @@
 	</div>
 	 <div id="shop__order">
 		<div class="tydee__eshop__title">
-			<h1>TYDEE ESHOP :: ORDER</h1>
+			<h2>TYDEE ESHOP :: ORDER</h2>
 			<!-- no hashtag in this page -->
 		</div>
 		<div class="eshop__order">
@@ -58,7 +58,7 @@
 			<c:forEach items="${list }" var="item">
 			<div class="basket__item">
 				<div class="item__image">
-					<img src="./images/${empty item.item_image ? '1.jpg' : item.item_image }" />
+					<img src="./images/${empty item.item_image ? 'basket1.jpg' : item.item_image }" />
 				</div>
 				<div class="item__title">
 					<span>${item.item_title }</span>

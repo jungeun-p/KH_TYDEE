@@ -60,7 +60,7 @@
 					<input type="number" name="item_price"  min="0" required="required" />
 					<div id="editor" name="item_content"></div>
 					<div class="item__upload">
-						<input type="button" value="업로드" onclick="makeapopup('boarditem_insert_popup.jsp')"/>
+						<input type="button" value="업로드" onclick="makeapopup('boarditem_popup.jsp')"/>
 						<span>이미지 없음</span>
 					</div>
 				</div>
