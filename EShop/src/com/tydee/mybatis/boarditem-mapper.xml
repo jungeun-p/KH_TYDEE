@@ -31,5 +31,12 @@
 		INSERT INTO BOARD_ITEM 
 		VALUES(BOARD_ITEM_SEQ.NEXTVAL, #{item_category}, #{item_title}, #{item_content}, #{item_image}, #{item_price}, SYSDATE, 'Y', 0)
 	</insert>
-
+	<update id="update" parameterType="BoardItemDto">
+		UPDATE BOARD_ITEM SET ITEM_CATEGORY = #{item_category}, ITEM_TITLE = #{item_title}, ITEM_CONTENT = #{item_content}, ITEM_IMAGE = #{item_image}, ITEM_PRICE = #{item_price}
+		WHERE ITEM_NO = #{item_no}
+	</update>
+	<update id="delete" parameterType="int">
+		UPDATE BOARD_ITEM SET ITEM_ACTIVE = 'N'
+		WHERE ITEM_NO = #{item_no}
+	</update>
 </mapper>
