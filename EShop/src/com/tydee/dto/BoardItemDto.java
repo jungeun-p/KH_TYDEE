@@ -16,6 +16,14 @@ public class BoardItemDto {
 	public BoardItemDto(String item_category) {
 		this.item_category = item_category;
 	}
+	public BoardItemDto(int item_no, String item_category, String item_title, String item_content, String item_image, int item_price) {
+		this.item_no = item_no;
+		this.item_category = item_category;
+		this.item_title = item_title;
+		this.item_content = item_content;
+		this.item_image = item_image;
+		this.item_price = item_price;
+	}
 	public BoardItemDto(String item_category, String item_title, String item_content, String item_image, int item_price) {
 		this.item_category = item_category;
 		this.item_title = item_title;

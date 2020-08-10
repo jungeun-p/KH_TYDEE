@@ -92,6 +92,10 @@ width: 200px;
 								<div id="viewer"></div>
 							</div>
 						</div>
+						<c:if test="${loginuser.user_role eq 'ADMIN'}">
+							<input type="button" value="수정" onclick="goToUpdate();" />
+							<input type="button" value="삭제" onclick="goToDelete();" />
+						</c:if>
 						</form>
 					</div>
 				</section>
@@ -116,6 +120,25 @@ function goToOrder(){
 	let form = document.getElementsByTagName("form")[0];
 	form.setAttribute("action", "order.do");
 	form.submit();
+}
+function goToUpdate(){
+	let command = document.querySelector("[name=command]");
+	command.setAttribute("value", "update");
+	let form = document.getElementsByTagName("form")[0];
+	form.setAttribute("action", "item.do");
+	form.submit();
+}
+function goToDelete(){
+	let really = confirm("삭제하시겠습니까?");
+	if (really && `${loginuser.user_role eq 'ADMIN'}`){
+		let command = document.querySelector("[name=command]");
+		command.setAttribute("value", "delete");
+		let form = document.getElementsByTagName("form")[0];
+		form.setAttribute("action", "item.do");
+		form.submit();
+	} else {
+		return false;
+	}
 }
 </script>
 </body>

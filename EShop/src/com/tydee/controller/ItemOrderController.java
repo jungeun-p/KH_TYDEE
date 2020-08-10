@@ -183,8 +183,6 @@ public class ItemOrderController extends HttpServlet {
 			// 주문 목록 detail
 			int order_no = Integer.parseInt(request.getParameter("order_no"));
 			List<ItemTotalDto> list = iodao.selectOne(order_no);
-			System.out.println("주문 상세보기 갯수 : " + list.size());
-			System.out.println("주문 상세보기 대표명 : "+list.get(0).getOrder_title());
 			request.setAttribute("list", list);
 			dispatch("boarditem_order_detail.jsp", request, response);
 		} else if (command.equals("eshopList")) {

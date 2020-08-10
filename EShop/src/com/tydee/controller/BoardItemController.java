@@ -116,13 +116,32 @@ public class BoardItemController extends HttpServlet {
 					+ "</script>";
 			response.getWriter().append(js);
 		} else if (command.equals("update")) {
-			
+			int item_no = Integer.parseInt(request.getParameter("item_no"));
+			BoardItemDto dto = dao.selectOne(item_no);
+			request.setAttribute("item", dto);
+			dispatch("boarditem_update.jsp", request, response);
 		} else if (command.equals("updateres")) {
-			
+			int item_no = Integer.parseInt(request.getParameter("item_no"));
+			String item_category = request.getParameter("item_category");
+			String item_title = request.getParameter("item_title");
+			String item_content = request.getParameter("item_content");
+			String item_image = request.getParameter("item_image");
+			int item_price = Integer.parseInt(request.getParameter("item_price"));
+			BoardItemDto dto = new BoardItemDto(item_no, item_category, item_title, item_content, item_image, item_price);
+			int res = dao.update(dto);
+			if (res > 0) {
+				System.out.println("수정 성공");
+			}
+			response.sendRedirect("item.do?command=list");
 		} else if (command.equals("delete")) {
-			
+			int item_no = Integer.parseInt(request.getParameter("item_no"));
+			int res = dao.delete(item_no);
+			if (res > 0) {
+				System.out.println("삭제 성공");
+			}
+			response.sendRedirect("item.do?command=list");
 		} else if (command.equals("eshopList")) {
-			
+			// 관리자페이지의 판매 상품 목록 보기?
 		}
 	}
 	protected void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
