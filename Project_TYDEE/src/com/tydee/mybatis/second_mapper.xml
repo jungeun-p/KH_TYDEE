@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="secondhand_mapper">
+  
+   <resultMap type="SecondHandDto" id="SecondHandDtoResultMap">
+      
+      <result property="sec_no" column="SEC_NO"/>
+      <result property="user_no" column="USER_NO"/>
+      <result property="sec_title" column="SEC_TITLE"/>
+      <result property="sec_content" column="SEC_CONTENT"/>
+      <result property="sec_price" column="SEC_PRICE"/>
+      <result property="sec_image" column="SEC_IMAGE"/>
+      <result property="sec_regdate" column="SEC_REGDATE"/>
+      <result property="sec_delete" column="SEC_DELETE"/>
+  
+   </resultMap>
+   
+  	<select id="selectList" resultType="SecondHandDto" >
+      SELECT SEC_NO,USER_NO,SEC_TITLE,SEC_CONTENT,SEC_PRICE,SEC_IMAGE,SEC_REGDATE,SEC_DELETE
+      FROM BOARD_SEC
+      ORDER BY SEC_NO DESC
+
+    </select>
+    
+    <select id="selectListComment" resultType="SecondCommDto" parameterType="hashMap">
+    
+ 		SELECT SEC_COMM_NO , SEC_NO, USER_NO, SEC_COMM_CONTENT, SEC_COMM_REGDATE,
+	   SEC_COMM_DELETE 
+	   FROM SEC_COMMENT
+	   WHERE SEC_NO = #{sec_no}
+	   AND USER_NO = #{user_no}
+	   ORDER BY SEC_COMM_NO DESC
+	   
+    </select>
+ 
+    
+ 	<select id="selectOne" parameterType="int" resultType="SecondHandDto">
+      SELECT USER_NO, SEC_NO, SEC_TITLE, SEC_CONTENT, SEC_PRICE,SEC_REGDATE, SEC_DELETE
+      FROM BOARD_SEC
+  	  WHERE SEC_NO = #{sec_no}
+  	  
+   </select>
+   
+   <insert id="insert" parameterType="SecondHandDto" >
+     INSERT INTO BOARD_SEC
+	 VALUES(BOARD_SEC_SEQ.NEXTVAL,#{user_no},#{sec_title},#{sec_content},#{sec_price},NULL,SYSDATE,'N')
+   
+   </insert>
+  
+   <insert id="insertReply" parameterType="SecondCommDto">
+   
+   		INSERT INTO SEC_COMMENT
+   		VALUES(SEC_COMMENT_SEQ.NEXTVAL,#{sec_no},#{user_no},#{sec_comm_content},SYSDATE,'N')
+   </insert>
+   
+ 	<update id="update" parameterType="SecondHandDto">
+   
+      UPDATE BOARD_SEC 
+      SET SEC_TITLE = #{sec_title}, SEC_CONTENT = #{sec_content}, SEC_PRICE=#{sec_price}
+      WHERE SEC_NO = #{sec_no}
+      AND USER_NO = #{user_no}
+    
+    
+   </update>
+   
+   <delete id="delete" parameterType="hashMap">
+   
+      DELETE FROM BOARD_SEC 
+      WHERE SEC_NO = #{sec_no}
+     
+     
+   </delete> 	
+   
+   <delete id="deleteChild" parameterType="int">
+   	
+   		DELETE FROM SEC_COMMENT
+   		WHERE SEC_NO = #{sec_no}
+   		
+   </delete>
+   
+   <delete id="deleteReply" parameterType="int">
+   	  
+   	  DELETE FROM SEC_COMMENT
+   	  WHERE SEC_COMM_NO = #{sec_comm_no}
+ 
+   </delete>
+   
+   
+ </mapper>

@@ -83,7 +83,7 @@ public class LoginController extends HttpServlet {
 		} else if (command.equals("logout")) {
 			session = request.getSession();
 			session.invalidate();
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("main_login.jsp");
 
 		} else if (command.equals("listall")) {
 			List<UserInfoDto> list = dao.selectlist();

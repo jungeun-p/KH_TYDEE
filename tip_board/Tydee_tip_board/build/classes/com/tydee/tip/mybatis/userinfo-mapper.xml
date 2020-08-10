@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="userinfo-mapper">
+	<select id="login" parameterType="UserInfoDto" resultType="UserInfoDto">
+		SELECT USER_NO, USER_ID, USER_PW, USER_ROLE, USER_NICKNAME, 
+				USER_REGDATE, SNS_TYPE, SNS_ID, USER_ACTIVE
+		FROM USER_INFO
+		WHERE USER_ID = #{user_id}
+		AND USER_PW = #{user_pw}
+	</select>
+</mapper>

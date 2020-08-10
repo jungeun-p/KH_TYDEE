@@ -30,12 +30,18 @@ response.setHeader("Expires", "0");
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet" />
+	<style>
+	.header{
+	  position: sticky;
+	  top:0;
+	}
+</style>
 </head>
 <body>
-
-	<%@ include file="./include/mytydee_header.jsp"%>
-
-<c:choose>
+	<div class="header">
+	<%@ include file="./include/main_header_test.jsp"%>
+	</div>
+	<c:choose>
 		<c:when test="${mytydeejson.indexOf('name') eq -1 }">
 				<section class="tydee__mytydee__title">
 					<h1><%=loginuser.getUser_nickname()%>님의 mytydee</h1>
@@ -122,5 +128,8 @@ response.setHeader("Expires", "0");
 
 	<script type="text/javascript" src="mytydee_js/d3maker.js"></script>
 	<script type="text/javascript" src="mytydee_js/mytydee.js"></script>
+	
+	<%@ include file="./include/footer.jsp"%>
+
 </body>
 </html>

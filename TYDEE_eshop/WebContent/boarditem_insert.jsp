@@ -54,7 +54,7 @@
 		</div>
 		<div class="insert">
 			<form action="item.do" method="post">
-				<input type="hidden" name="command" value="insert" />
+				<input type="hidden" name="command" value="insertres" />
 					<div id="items">
 					<div class="item__menus">
 						<p><label for="title">name</label></p>

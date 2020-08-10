@@ -154,7 +154,7 @@ li {
 .modal__wrap {
   position: relative;
   display: block;
-  width: 450px;
+  width: 200px;
   height: 100%;
   padding: 30px;
   margin: 20px;
@@ -317,7 +317,7 @@ a.btn-layerClose:hover {
 .make__tydee {
   position: fixed;
   top: 25%;
-  left: 30%;
+  left: 25%;
   padding: 30px;
   margin: 0;
   width: 450px;

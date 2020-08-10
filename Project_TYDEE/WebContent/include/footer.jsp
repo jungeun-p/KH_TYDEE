@@ -23,9 +23,9 @@
 
 	<footer>
 		<div class="footer">
-			<p>©TYDEE | Jiyeon Shinbusiness number l. 000-00-00000 online
+			<p>©TYDEE | MESY Shinbusiness number l. 000-00-00000 online
 				business l. 2020-서울 역삼-0511hosting by cafe24 agreement privacy
-				policy</p>
+				policy tydee.adm@gmail.com</p>
 			<p>©tydee all rights reserved.site by mesy.</p>
 		</div>
 	</footer>

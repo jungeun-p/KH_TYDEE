@@ -14,6 +14,11 @@
 		<typeAlias type="com.tydee.dto.MyTydeeVisionDto" alias="VisionDto"/>
 		<typeAlias type="com.login.dto.UserInfoDto" alias="UserInfoDto"/>
 		<typeAlias type="com.login.dto.UserInfoUpdateDto" alias="UpdateDto"/>
+		<typeAlias type="com.tydee.tip.dto.tip_file_dto" alias="tip_file_dto"></typeAlias>
+		<typeAlias type="com.tydee.tip.dto.tip_dto" alias="tip_dto"></typeAlias>
+		<typeAlias type="com.tydee.tip.dto.tip_Comm_dto" alias="tip_Comm_dto"/>
+		<typeAlias type="com.tydee.second.dto.SecondHandDto" alias="SecondHandDto"/>
+        <typeAlias type="com.tydee.second.dto.SecondCommDto" alias="SecondCommDto"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -30,6 +35,9 @@
 	<mappers>
 		<mapper resource="com/tydee/mybatis/mytydee-mapper.xml"/>
 		<mapper resource="com/tydee/mybatis/userinfo-mapper.xml"/>
+		<mapper resource="com/tydee/mybatis/tips-mapper.xml"/>
+		<mapper resource="com/tydee/mybatis/tip-file-mapper.xml"/>
+		<mapper resource="com/tydee/mybatis/second_mapper.xml"/>
 	</mappers>
 
 </configuration>

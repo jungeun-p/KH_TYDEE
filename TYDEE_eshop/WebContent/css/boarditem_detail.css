@@ -9,7 +9,7 @@
   --font-large: 36px;
   --font-title: 25px;
   --font-regular: 18px;
-  --font-small: 12px;
+  --font-small: 16px;
 
   /*font weight*/
   --weight-bold: 700;
@@ -83,12 +83,17 @@ li {
 /*details*/
 .details {
   position: sticky;
-  top: 10%;
+  top: 20%;
   left: 35%;
   padding: 20px 125px;
 }
-.tui-editor-contents {
+#viewer {
   width: 300px;
+}
+
+.tui-editor-contents >p {
+  font-size:var(--font-small);
+  font-weight:var(--weight-regular);
 }
 
 .modal__name {
@@ -96,7 +101,7 @@ li {
   padding: 0 0 20px 0;
 }
 
-.modal__buttons {
+.item__quantity_value {
   margin: 20px 0;
 }
 
@@ -140,6 +145,14 @@ input:hover {
   background-color: var(--color-dark-gray);
   color: var(--color-white);
   transition: all ease 0.3s 0s;
+}
+
+.modal__description{
+	font-weight: var(--weight-regular);
+}
+
+.modal__name, #viewer{
+	font-weight: var(--weight-bold);
 }
 
 /*reviews*/

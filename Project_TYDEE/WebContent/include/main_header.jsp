@@ -26,13 +26,13 @@ if (loginuser == null) {
 	 <nav id="tydee__nav">
       <div class="logo">
         <i class="fas fa-dot-circle"></i>
-        <a href="#">TYDEE</a>
+        <a href="main.jsp">TYDEE</a>
       </div>
       <div class="tydee__menu">
         <ul class="tydee__menu">
           <li class="item"><a href="#">TYDEE</a></li>
           <li class="item"><a href="#">SHOP</a></li>
-          <li class="item"><a href="#">TIPS</a></li>
+          <li class="item"><a href="tip.do?command=main">TIPS</a></li>
         </ul>
       </div>
       <div class="login">

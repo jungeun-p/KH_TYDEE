@@ -43,6 +43,30 @@
   	<servlet-name>visionapi</servlet-name>
   	<url-pattern>/vision.do</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+  	<servlet-name>tip</servlet-name>
+  	<servlet-class>com.tydee.tip.controller.tip_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>tip</servlet-name>
+  	<url-pattern>/tip.do</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>secondhand</servlet-name>
+  	<servlet-class>com.tydee.second.controller.SecondHandController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>secondhand</servlet-name>
+  	<url-pattern>/secondhand_controller.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>secondcomm</servlet-name>
+  	<servlet-class>com.tydee.second.controller.SecondCommController</servlet-class>
+  </servlet>
+    <servlet-mapping>
+  	<servlet-name>secondcomm</servlet-name>
+  	<url-pattern>/second_comm_controller.do</url-pattern>
+  </servlet-mapping>
 
 </web-app>
