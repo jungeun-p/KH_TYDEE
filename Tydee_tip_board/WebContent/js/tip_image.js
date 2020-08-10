@@ -11,6 +11,7 @@ add.addEventListener("click", () => {
      image.setAttribute("value", "업로드");
      image.setAttribute("onclick", "makeapopup('mytydee_popup.jsp')");
      imagediv.appendChild(image);
+     
      let spanimg = document.createElement("span");
      spanimg.textContent = "이미지 없음";
      imagediv.appendChild(spanimg);

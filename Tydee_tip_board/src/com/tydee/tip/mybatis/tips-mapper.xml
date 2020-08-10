@@ -24,14 +24,15 @@
   
   
   <select id="selectList" resultType="tip_dto">
-  	SELECT TIP_NO, USER_NO, TIP_TITLE, TIP_CONTENT, TIP_SUMMARY, TIP_IMAGE, TIP_REGDATE, TIP_DELETE
-  	FROM BOARD_TIPS T
+  	SELECT TIP_NO, USER_NO, USER_NICKNAME, TIP_TITLE, TIP_CONTENT, TIP_SUMMARY, TIP_IMAGE, TIP_REGDATE, TIP_DELETE
+  	FROM BOARD_TIPS 
   	JOIN USER_INFO USING (USER_NO) 
   </select>
   
   <select id="selectOne" parameterType="int" resultType="tip_dto">
-  	SELECT TIP_NO, USER_NO, TIP_TITLE, TIP_CONTENT, TIP_SUMMARY, TIP_IMAGE, TIP_REGDATE, TIP_DELETE
+  	SELECT TIP_NO, USER_NO, USER_NICKNAME,TIP_TITLE, TIP_CONTENT, TIP_SUMMARY, TIP_IMAGE, TIP_REGDATE, TIP_DELETE
   	FROM BOARD_TIPS
+  	JOIN USER_INFO USING (USER_NO)
   	WHERE TIP_NO = #{tip_no}
   </select>
   
@@ -42,7 +43,7 @@
   
   <update id="update" parameterType="tip_dto">
   	UPDATE BOARD_TIPS
-  	SET TIP_TITLE = #{tip_title}, TIP_CONTENT = #{tip_content}, TIP_SUMMARY = #{tip_summary}, TIP_IMAGE = #{tip_image}
+  	SET TIP_TITLE = #{tip_title}, TIP_CONTENT = #{tip_content}, TIP_SUMMARY = #{tip_summary}
   	WHERE TIP_NO = #{tip_no}
   </update>
   
