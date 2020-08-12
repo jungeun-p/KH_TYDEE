@@ -6,7 +6,6 @@ public class tip_dto {
 	
 	private int tip_no;
 	private int user_no;
-	private String user_nickname;
 	private String tip_title;
 	private String tip_content;
 	private String tip_summary;
@@ -14,17 +13,15 @@ public class tip_dto {
 	private Date tip_regdate;
 	private String tip_delete;
 	
-	
 	public tip_dto() {
 		
 	}
 	
 
-	public tip_dto(int tip_no, int user_no, String user_nickname, String tip_title, String tip_content, String tip_summary,String tip_image, Date tip_regdate, String tip_delete) {
+	public tip_dto(int tip_no, int user_no, String tip_title, String tip_content, String tip_summary,String tip_image, Date tip_regdate, String tip_delete) {
 	
 		this.tip_no = tip_no;
 		this.user_no = user_no;
-		this.user_nickname = user_nickname;
 		this.tip_title = tip_title;
 		this.tip_content = tip_content;
 		this.tip_summary = tip_summary;
@@ -34,8 +31,6 @@ public class tip_dto {
 	}
 	
 	
-
-
 	//insert
 	public tip_dto(int user_no, String tip_title, String tip_content, String tip_summary) {
 		this.user_no = user_no;
@@ -52,7 +47,7 @@ public class tip_dto {
 	
 	//update
 	public tip_dto(int tip_no, String tip_title, String tip_content, String tip_summary, String tip_image) {
-		 
+		
 		this.tip_no = tip_no;
 		this.tip_title = tip_title;
 		this.tip_content = tip_content;
@@ -79,16 +74,6 @@ public class tip_dto {
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
-	
-	public String getUser_nickname() {
-		return user_nickname;
-	}
-
-
-	public void setUser_nickname(String user_nickname) {
-		this.user_nickname = user_nickname;
-	}
-
 
 	public String getTip_title() {
 		return tip_title;

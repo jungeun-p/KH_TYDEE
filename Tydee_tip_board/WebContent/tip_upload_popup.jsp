@@ -1,4 +1,3 @@
-<%@page import="com.tydee.tip.dto.tip_file_dto"%>
 <%@page import="com.tydee.tip.dto.UserInfoDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
