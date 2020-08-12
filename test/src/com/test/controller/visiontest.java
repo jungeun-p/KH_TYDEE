@@ -1,5 +1,6 @@
 package com.test.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -48,7 +49,7 @@ public class visiontest extends HttpServlet {
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
-		    String visionpath = path + "\\"+file;
+		    String visionpath = path + "\\" + file;
 		    System.out.println(visionpath);
 		    String result = VisionTest.detectDocumentText(visionpath);
 //		    System.out.println(result);
@@ -58,6 +59,11 @@ public class visiontest extends HttpServlet {
 		    	request.setAttribute("condition", "not bad");
 		    }
 		    request.setAttribute("text", result);
+		    File f = new File(visionpath);
+		    if (f.exists()) {
+		    	f.delete();
+		    	System.out.println("파일 삭제");
+		    }
 		    RequestDispatcher dispatch = request.getRequestDispatcher("vision_test_result.jsp");
 		    dispatch.forward(request, response);
 		}

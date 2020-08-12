@@ -16,7 +16,7 @@
     <a href="d3_line_chart.html">tutorial - line chart</a><br />
     <a href="d3_pie_chart.html">tutorial - pie chart</a><br />
     <a href="d3_sunburst.html">tutorial - sunburst</a><br />
-	<a href="d3_sunburst_self.html">d3 sunburst self</a>
+	<a href="d3_sunburst_self.html">d3 sunburst with label</a><br />
     <h3>vision api TEST</h3>
     <a href="vision_test.jsp">vision_test</a>
     <h3>toast ui editor TEST</h3>

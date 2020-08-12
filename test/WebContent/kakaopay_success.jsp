@@ -8,8 +8,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<% String msg = request.getParameter("msg"); %>
 <body>
-<h1>성공!</h1>
+	<script>
+		let msg = localStorage.getItem("msg");
+		document.body.innerHTML = msg;
+	</script>
 </body>
 </html>
