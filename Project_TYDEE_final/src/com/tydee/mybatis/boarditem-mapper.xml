@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boarditem-mapper">
+
+	<select id="selectListAllY" resultType="BoardItemDto">
+		SELECT ITEM_NO, ITEM_CATEGORY, ITEM_TITLE, ITEM_CONTENT, ITEM_IMAGE, ITEM_PRICE, ITEM_REGDATE, ITEM_ACTIVE, ITEM_QUAN
+		FROM BOARD_ITEM
+		WHERE ITEM_ACTIVE = 'Y'
+		ORDER BY ITEM_NO DESC
+	</select>
+	<select id="selectListSomeY" parameterType="String" resultType="BoardItemDto">
+		SELECT ITEM_NO, ITEM_CATEGORY, ITEM_TITLE, ITEM_CONTENT, ITEM_IMAGE, ITEM_PRICE, ITEM_REGDATE, ITEM_ACTIVE, ITEM_QUAN
+		FROM BOARD_ITEM
+		WHERE ITEM_ACTIVE = 'Y'
+		AND ITEM_CATEGORY = #{item_category}
+		ORDER BY ITEM_NO DESC
+	</select>
+	<select id="selectOne" parameterType="int" resultType="BoardItemDto">
+		SELECT ITEM_NO, ITEM_CATEGORY, ITEM_TITLE, ITEM_CONTENT, ITEM_IMAGE, ITEM_PRICE, ITEM_REGDATE, ITEM_ACTIVE, ITEM_QUAN
+		FROM BOARD_ITEM
+		WHERE ITEM_ACTIVE = 'Y'
+		AND ITEM_NO = #{item_no}
+	</select>
+	<select id="selectCategory" resultType="BoardItemDto">
+		SELECT DISTINCT ITEM_CATEGORY 
+		FROM BOARD_ITEM
+		WHERE ITEM_ACTIVE = 'Y'
+		ORDER BY ITEM_CATEGORY
+	</select>
+	<insert id="insert" parameterType="BoardItemDto">
+		INSERT INTO BOARD_ITEM 
+		VALUES(BOARD_ITEM_SEQ.NEXTVAL, #{item_category}, #{item_title}, #{item_content}, #{item_image}, #{item_price}, SYSDATE, 'Y', 0)
+	</insert>
+	<update id="update" parameterType="BoardItemDto">
+		UPDATE BOARD_ITEM SET ITEM_CATEGORY = #{item_category}, ITEM_TITLE = #{item_title}, ITEM_CONTENT = #{item_content}, ITEM_IMAGE = #{item_image}, ITEM_PRICE = #{item_price}
+		WHERE ITEM_NO = #{item_no}
+	</update>
+	<update id="delete" parameterType="int">
+		UPDATE BOARD_ITEM SET ITEM_ACTIVE = 'N'
+		WHERE ITEM_NO = #{item_no}
+	</update>
+</mapper>

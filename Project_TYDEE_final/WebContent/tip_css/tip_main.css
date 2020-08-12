@@ -1,0 +1,144 @@
+@charset "EUC-KR";
+:root {
+  /*color*/
+  --color-white: #ffffff;
+  --color-black: #212121;
+  --color-gray: #f4f4f4;
+  --color-dark-gray: #f9f9f9;
+
+  /*font size*/
+  --font-large: 36px;
+  --font-icon: 25px;
+  --font-regular: 18px;
+  --font-small: 12px;
+
+  /*font weight*/
+  --weight-bold: 700;
+  --weight-regular: 500;
+  --weight-thin: 300;
+
+  /*Size*/
+  --size-border-radius: 13px;
+}
+
+/*universal tags*/
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  cursor: default;
+}
+
+a {
+  margin: 0;
+  text-decoration: none;
+  color: var(--color-black);
+}
+ul,
+li {
+  list-style: none;
+  padding-left: 0;
+}
+
+/*tydee secondhand*/
+
+.tydee__secondhand {
+  display: flex;
+  flex-direction: column;
+}
+
+/*tydee*/
+
+.tydee__secondhand__title {
+  text-align: center;
+  padding: 30px 30px;
+}
+.tydee__secondhand__title h1 {
+  padding: 0 0 20px 0;
+  font-size: var(--font-large);
+  color: var(--color-black);
+}
+.tydee__hashtag {
+  display: flex;
+  justify-content: center;
+  font-size: var(--font-regular);
+  color: var(--color-black);
+}
+.tydee__hashtag > span {
+  margin: 0 50px;
+}
+
+.wrtie__secondhand {
+  text-align: right;
+  padding-right: 0 20px;
+  font-size: var(--font-regular);
+  margin: 0;
+}
+
+/*modals*/
+
+.modals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--color-gray);
+  padding: 40px 0;
+}
+
+.modal__wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden;
+  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: var(--size-border-radius);
+  padding-bottom: 20px;
+  background-color: #fff;
+  -ms-flex-item-align: center;
+  align-self: center;
+  box-shadow: 0 12px 25px 0 rgba(199, 175, 189, 0.25);
+}
+
+.modal__wrap img {
+  border-radius: 13px 13px 0 0;
+  display: block;
+  width: 300px;
+  height: 200px;
+}
+
+.modal__description {
+  padding: 10px 30px 0px 30px;
+  font-weight: var(--weight-regular);
+  font-size: var(--font-small);
+}
+
+.modal__name {
+  font-weight: var(--weight-bold);
+  font-size: var(--font-regular);
+}
+
+.modal__wrap:hover {
+  margin-right: 15px;
+  margin-top: 15px;
+  box-shadow: 50px 50px 70px 10px rgba(0, 0, 0, 0.35);
+  transition: all ease 0.3s 0s;
+}
+.modal__white:hover {
+  color: var(--color-black);
+  transition: all ease 0.3s 0s;
+  opacity: 0.7;
+}
+
+.write >.modal__wrap{
+	background-color: transparent;
+}
+
+.modal__write{
+	font-size: var(--font-icon);
+	text-align: center;
+	padding-top: 30px;
+}
+
