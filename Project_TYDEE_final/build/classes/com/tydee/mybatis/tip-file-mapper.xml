@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Namespace를 통해 JAVA 클래스와 Annotation클래스와 동기 -->
+<mapper namespace="tips-file-mapper">
+
+
+	<insert id="insert" parameterType="tip_file_dto">
+  		INSERT INTO TYDEE_FILE
+  		VALUES(TYDEE_FILE_SEQ.NEXTVAL, 'BOARD_TIP', #{file_name})
+    </insert>
+
+
+	<delete id="delete" parameterType="int">
+  		DELETE FROM TYDEE_FILE
+  		WHERE FILE_NO = #{file_no}
+    </delete>
+
+
+
+
+
+
+</mapper>

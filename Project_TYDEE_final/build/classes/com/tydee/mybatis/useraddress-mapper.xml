@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="useraddress-mapper">
+	<insert id="insertnew" parameterType="UserAddressDto">
+		INSERT INTO USER_ADDRESS
+		VALUES(USER_ADDRESS_SEQ.NEXTVAL, #{user_no}, #{user_name}, #{user_phone}, #{user_address_first}, #{user_address_second}, #{user_address_extra}, #{user_postcode})
+	</insert>
+	<select id="selectrecent" parameterType="int" resultType="UserAddressDto">
+		SELECT ADDRESS_NO, USER_NO, USER_NAME, USER_PHONE, USER_ADDRESS_FIRST, USER_ADDRESS_SECOND, USER_ADDRESS_EXTRA, USER_POSTCODE
+		FROM (
+			SELECT ADDRESS_NO, USER_NO, USER_NAME, USER_PHONE, USER_ADDRESS_FIRST, USER_ADDRESS_SECOND, USER_ADDRESS_EXTRA, USER_POSTCODE
+			FROM USER_ADDRESS
+			WHERE USER_NO = #{user_no}
+			ORDER BY ADDRESS_NO DESC)
+		WHERE ROWNUM = 1
+	</select>
+	<select id="lastaddressno" resultType="int">
+		SELECT ADDRESS_NO 
+		FROM (SELECT ADDRESS_NO FROM USER_ADDRESS ORDER BY ADDRESS_NO DESC)
+		WHERE ROWNUM = 1
+	</select>
+</mapper>
