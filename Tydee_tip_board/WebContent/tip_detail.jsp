@@ -1,5 +1,6 @@
 <%@page import="com.tydee.tip.dto.UserInfoDto"%>
 <%@page import="com.tydee.tip.dto.tip_dto"%>
+<%@page import="com.tydee.tip.dto.tip_file_dto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -30,12 +31,17 @@
 if (loginuser == null) {
 	pageContext.forward("tip_index.jsp");
 }
+	
 %>
 <body>
 	<table border='1'>
 		<tr>
 			<th>번호</th>
 			<td>${dto.tip_no }</td>
+		</tr>
+		<tr>
+			<th>유저이름</th>
+			<td>${dto.user_nickname }</td>
 		</tr>
 		<tr>
 			<th>제목</th>
@@ -53,7 +59,8 @@ if (loginuser == null) {
 	</table>
 	<input type="button" value="뒤로가기" onclick="location.href='tip.do?command=list'" />
 	<input type="button" value="맨앞으로" onclick="location.href='tip_index.jsp'" />
-	<input type="button" value="삭제하기" onclick="location.href='tip.do?command=delete&tip_no=${dto.tip_no}'" />
+	<input type="button" value="수정하기" onclick="location.href='tip.do?command=update&tip_no=${dto.tip_no }'" />
+	<input type="button" value="삭제하기" onclick="location.href='tip.do?command=delete&tip_no=${dto.tip_no }'" />
 	    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.js"></script>
     <script>
         const viewer = new toastui.Editor({
@@ -63,6 +70,18 @@ if (loginuser == null) {
 			initialValue: `${dto.tip_content}`
         });
         viewer.getMarkdown();
+        
+        <%-- function usercheck(updateuser){
+        	     	
+        	if(updateuser == <%=user_nickname%>){
+        		location.href='tip.do?command=update'  
+        	} else {
+        		alert("수정권한이 없습니다.")
+        	}
+        } --%>
+        
+        
+        
     </script>
 </body>
 </html>

@@ -23,14 +23,15 @@ if (loginuser == null) {
 	<table border='1'>
 		<tr>
 			<th>번호</th>
+			<th>유저이름</th>
 			<th>제목</th>
 			<th>요약</th>
 			<th>작성일자</th>
-			
 		</tr>
 		<c:forEach items="${list }" var="dto">
 			<tr>
 				<td>${dto.tip_no }</td>
+				<td>${dto.user_nickname }</td>
 				<td onclick="location.href='tip.do?command=detail&tip_no=${dto.tip_no}'">${dto.tip_title }</td>
 				<td>${dto.tip_summary }</td>
 				<td>${dto.tip_regdate }</td>
