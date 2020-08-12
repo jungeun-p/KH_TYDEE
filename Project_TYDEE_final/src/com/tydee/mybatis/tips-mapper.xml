@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Namespace를 통해 JAVA 클래스와 Annotation클래스와 동기 -->
+<mapper namespace="tips-mapper">
+ 
+ <resultMap type="tip_dto" id="tip_dto">
+ 		<id property="id_fk" column="user_no"></id>
+  		<result property="tip_no" column="TIP_NO"/>
+  		<result property="user_no" column="USER_NO"/>
+  		<result property="tip_title" column="TIP_TITLE" />
+  		<result property="tip_content" column="TIP_CONTENT" />  		
+  		<result property="tip_summary" column="TIP_SUMMARY" />
+  		<result property="tip_image" column="TIP_IMAGE" />  		
+  		<result property="tip_regdate" column="TIP_REDGATE" />
+  		<result property="tip_delete" column="TIP_DELETE" />
+  		<association property="userno" column="user_no" resultMap="user_info"></association>
+  </resultMap>
+
+  <resultMap type="UserInfoDto" id="user_info">
+  		<id property="id_fk" column="user_no"></id> 
+		<result property="user_no" column="USER_NO"></result>
+  </resultMap>
+  
+  <select id="selectList" resultType="tip_dto">
+  	SELECT TIP_NO, USER_NO, USER_NICKNAME, TIP_TITLE, TIP_CONTENT, TIP_SUMMARY, TIP_IMAGE, TIP_REGDATE, TIP_DELETE
+  	FROM BOARD_TIPS T
+  	JOIN USER_INFO USING (USER_NO) 
+  </select>
+  
+   <select id="selectListComment" resultType="tip_Comm_dto" parameterType="hashMap">
+  	SELECT TIP_COMM_NO, TIP_NO, USER_NO, TIP_COMM_CONTENT,TIP_COMM_REGDATE, TIP_COMM_DELETE 
+  	FROM TIP_COMMENT
+  	WHERE TIP_NO = #{tip_no}
+  	AND USER_NO = #{user_no}
+  	ORDER BY TIP_COMM_NO DESC
+  </select>
+  
+  <select id="selectOne" parameterType="int" resultType="tip_dto">
+  	SELECT TIP_NO, USER_NO, USER_NICKNAME, TIP_TITLE, TIP_CONTENT, TIP_SUMMARY, TIP_IMAGE, TIP_REGDATE, TIP_DELETE
+  	FROM BOARD_TIPS
+  	JOIN USER_INFO USING (USER_NO) 
+  	WHERE TIP_NO = #{tip_no}
+  </select>
+  
+  <insert id="insert" parameterType="tip_dto">
+  	INSERT INTO BOARD_TIPS
+  	VALUES(BOARD_TIPS_SEQ.NEXTVAL, #{user_no}, #{tip_title}, #{tip_content}, #{tip_summary}, 'image', SYSDATE, 'N')
+  </insert>
+  
+  <insert id="insertReply" parameterType="tip_Comm_dto">
+   		INSERT INTO TIP_COMMENT
+   		VALUES(SEC_COMMENT_SEQ.NEXTVAL,#{tip_no},#{user_no},#{tip_comm_content},SYSDATE,'N')
+  </insert>
+  
+  <update id="update" parameterType="tip_dto">
+  	UPDATE BOARD_TIPS
+  	SET TIP_TITLE = #{tip_title}, TIP_CONTENT = #{tip_content}, TIP_SUMMARY = #{tip_summary}, TIP_IMAGE = #{tip_image}
+  	WHERE TIP_NO = #{tip_no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+  	DELETE FROM BOARD_TIPS
+  	WHERE TIP_NO = #{tip_no}
+  </delete>
+  
+    <delete id="deleteReply" parameterType="int">
+  	DELETE FROM TIP_COMMENT
+  	WHERE TIP_COMM_NO = #{tip_comm_no}
+  </delete>
+  
+  </mapper>
