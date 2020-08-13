@@ -3,30 +3,10 @@
 <!-- Namespace를 통해 JAVA 클래스와 Annotation클래스와 동기 -->
 <mapper namespace="tips-file-mapper">
 
-	
-	<resultMap type="tip_file_dto" id="tip_file_dto">
-		<id property ="file_fk" column="user_no"></id>
-		<result property="file_no" column="FILE_NO"/>
-		<result property="board_type" column="BOARD_TIP"/>
-		<result property="file_name" column="FILE_NAME"/>
-		<result property="user_no" column="USER_NO"/>
-	</resultMap>
-
-	<resultMap type="UserInfoDto" id="user_info">
-  		<id property="file_fk" column="user_no"></id> 
-		<result property="user_no" column="USER_NO"></result>
-  </resultMap>
-
-	<select id="selectOne" parameterType="int" resultType="tip_file_dto">
-	SELECT * FROM 
-	(SELECT * FROM TYDEE_FILE JOIN BOARD_TIPS USING(USER_NO) WHERE TIP_NO = 58 ORDER BY FILE_NO DESC)
-	WHERE ROWNUM = 1
-	</select>
-
 
 	<insert id="insert" parameterType="tip_file_dto">
   		INSERT INTO TYDEE_FILE
-  		V7ALUES(TYDEE_FILE_SEQ.NEXTVAL, 'BOARD_TIP', #{file_name}, #{user_no}, #{original_name})
+  		VALUES(TYDEE_FILE_SEQ.NEXTVAL, 'BOARD_TIP', #{file_name})
     </insert>
 
 

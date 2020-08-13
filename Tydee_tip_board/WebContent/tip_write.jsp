@@ -12,12 +12,6 @@
 			//open(파일, 이름, 옵션)
 			window.open("tip_upload_popup.jsp","upload_popup","width=400px, height=500px");		
 		}	
-		
-		function imageShow(){
-			request.getAttribute("showImg");
-			console.log("showImg");
-		}
-		
 	</script>   
    
 
@@ -43,10 +37,8 @@ if (loginuser == null) {
 <body>
 	<h1> Tydee Tip 글쓰기</h1>
 	<!-- 파일 업로드 버튼 -->
-	<input type="button" onclick="upload_popup()" value="파일 업로드 하기"><br>
-	업로드한 이미지 이름 : <div id="upload_name"></div><br>
-	업로드한 이미지 위치 : <div id="upload_loc"></div><br>
-	업로드한 이미지 : <div id="upload_img"></div><br>
+	<input type="button" onclick="upload_popup()" value="파일 업로드 하기">
+	<p id="upload_area"></p>
 
 
 <!--     <form action="toast_editor_result.jsp" method="POST"> -->
@@ -54,7 +46,6 @@ if (loginuser == null) {
     	<input type="text" name="tip_title" />
     	
     	<textarea rows="5" cols="60" name="tip_summary"></textarea>
-    	<input type="hidden" name="img_display" value="showImg">
     	
         <div id="editor" name="content"></div>
         
@@ -95,15 +86,6 @@ if (loginuser == null) {
             input.setAttribute("value", editor.getMarkdown());
             document.querySelector("#editor").append(input);
         }
-    </script>
-    
-    <script>
-    
-    
-    
-    
-    
-    
     </script>
 </body>
 
