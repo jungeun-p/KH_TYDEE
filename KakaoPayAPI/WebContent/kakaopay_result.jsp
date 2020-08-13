@@ -9,9 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="result"></div>
+	<input type="button" value="뒤로가기" onclick="location.href='index.jsp'" />
 	<script>
 		let msg = localStorage.getItem("msg");
-		document.body.innerHTML = msg;
+		document.getElementById("result").innerHTML = msg;
 	</script>
 </body>
 </html>

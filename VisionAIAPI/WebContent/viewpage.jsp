@@ -7,11 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#viewer {
+	max-width: 500px;
+}
+</style>
+<% String text = (String) request.getAttribute("text"); %>
 </head>
 <body>
-	<script>
-		let msg = localStorage.getItem("msg");
-		document.body.innerHTML = msg;
-	</script>
+	<div id="viewer">
+		<%=text %>
+	</div>
 </body>
 </html>

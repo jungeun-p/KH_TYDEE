@@ -40,17 +40,16 @@
 			buyer_postcode : '<%=postcode%>'
 		}, rsp => {
             if (rsp.success) {
-                var msg = '결제가 완료되었습니다.';
-                msg += '고유ID : ' + rsp.imp_uid;
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
+            	var msg = '<h3>결제가 완료되었습니다.</h3>';
+				msg += '<p>상점 거래내역 ID : '+ rsp.merchant_uid +'</p>';
+				msg += '<p>결제 금액 : &#8361;'+ rsp.paid_amount.toLocaleString() +'</p>';
+				msg += '<p>결제 상품 : ' + rsp.name +'</p>';
             } else {
-                var msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
+            	var msg = '<h3>결제에 실패하였습니다.</h3>';
+				msg += '<p>에러 내용 : ' + rsp.error_msg + '</p>';
             }
-            alert(msg);
-            location.href="kakaopay_success.jsp";
+			localStorage.setItem('msg', msg);
+            location.replace("kakaopay_success.jsp");
         });
 
 	</script>
