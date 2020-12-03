@@ -1,1 +1,0 @@
-SELECT * from BOARD_TIPS;
