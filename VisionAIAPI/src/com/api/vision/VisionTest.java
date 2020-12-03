@@ -19,11 +19,7 @@ public class VisionTest {
 	/*
 	 * For full list of available annotations, see http://g.co/cloud/vision/docs
 	 * 기본적인 text detecting 기능만을 사용했으므로
-	 * 코드는 google vision ai api의 예제 코드와 크게 다르지 않다
-	 * google의 vision 제품으로는 autoML과 vision ai가 있는데
-	 * autoML의 경우에는 이미지 파일을 보이는 그대로 텍스트를 추출해내기 때문에 (사실 불확실함)
-	 * 영수증과 같이 다단으로 이루어진 경우, 리턴되는 String값이 뒤죽박죽이다
-	 * paragraph와 block 단위로 인식하여 읽어내는 vision ai를 선택하게 된 이유이다
+	 * 코드는 google vision ai api의 예제 코드와 다른 게 없다
 	 * 
 	 * 1. https://console.cloud.google.com/home/ 에서 프로젝트를 생성한 후, 라이브러리를 추가
 	 * 2. IAM및 관리자 > 서비스 계정 > 해당 프로젝트 키 만들기
@@ -32,7 +28,7 @@ public class VisionTest {
 	 *    Add > key : GOOGLE_APPLICATION_CREDENTIALS / value : ${project_loc}\(이하 JSON 파일 저장된 주소)
 	 * 5. google vision api에 나와있는 예제 실행
 	 * 
-	 * 자세한 내용은 검색해보는 것을 추천합니다
+	 * 보다 자세한 내용은 검색해보는 것을 추천하는 바임
 	 */
 	public static String detectDocumentText(String filePath) throws IOException {
 		  List<AnnotateImageRequest> requests = new ArrayList<>();
@@ -41,6 +37,15 @@ public class VisionTest {
 
 		  Image img = Image.newBuilder().setContent(imgBytes).build();
 		  Feature feat = Feature.newBuilder().setType(Type.DOCUMENT_TEXT_DETECTION).build();
+		  /*
+		   *  TEXT_DETECTION과 DOCUMENT_TEXT_DETECTION의 차이는
+		   *  Vision API 안내 가이드 - 광학 문자 인식(OCR) - 이미지의 텍스트 감지에 기재된 내용이나 첨부하자면
+		   *  전자는 임의의 이미지에서 텍스트를 감지하여 추출하는 것이고
+		   *  후자는 밀집된 텍스트와 문서에 최적화되어
+		   *  페이지, 블록, 단락, 단어, 줄바꿈 정보를 포함하여
+		   *  JSON 형식으로 텍스트를 감지, 추출한다
+		   */
+		  
 		  AnnotateImageRequest request =
 		      AnnotateImageRequest.newBuilder().addFeatures(feat).setImage(img).build();
 		  requests.add(request);
@@ -58,6 +63,10 @@ public class VisionTest {
 		        return "error!";
 		      }
 		      annotation = res.getFullTextAnnotation();
+		      // 페이지나 블록, 문단, 단어, 글자 단위의 인식이 필요할 경우
+		      // 여기서부터 for문을 돌려 얻을 수 있다
+		      // ex) for (Page page : annotation.getPagesList()) { ...
+		      // AnnotateImageResponse의 메소드들 : getPagesList(), getParagraphsList(), getWordsList(), getSymbolsList()
 		    }
 		  }
 		  return annotation.getText();
