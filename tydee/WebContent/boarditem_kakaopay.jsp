@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TYDEE</title>
+<title>Insert title here</title>
 <script src="https://kit.fontawesome.com/3914a9940d.js" crossorigin="anonymous"></script>
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>

@@ -63,7 +63,7 @@
 				</div>
 				<div class="pw">
 					<p>pw</p>
-					<input class="title__inner" type="password" name="user_pw"
+					<input class="title__inner" type="text" name="user_pw"
 						placeholder="password" required="required" /> <input
 						type="button" value="check" onclick="" />
 				</div>

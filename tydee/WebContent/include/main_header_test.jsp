@@ -29,7 +29,7 @@ if (loginuser == null) {
           <li class="tydee__menu__item"><a href="item.do?command=list">SHOP</a></li>
           <li class="tydee__menu__item"><a href="secondhand_controller.do?command=list&user_id=${loginuser.user_id }">SECONDHAND SHOP</a></li>
           <li class="tydee__menu__item"><a href="tip.do?command=main">TIPS</a></li>
-          <li class="tydee__menu__item"><a href="store_map.jsp">STORE</a></li>
+          <li class="tydee__menu__item"><a href="">STORE</a></li>
         </ul>
         <div class="tydee__logo">
           <a href="main.jsp">♟</a>

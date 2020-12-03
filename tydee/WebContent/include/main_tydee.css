@@ -1,7 +1,4 @@
 @charset "EUC-KR";
-html, body {
-	overflow-x: hidden;
-}
 .tydee__sidelogo {
     font-size: var(--font-footer);
     bottom: 5%;

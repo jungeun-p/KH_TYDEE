@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TYDEE</title>
+<title>Insert title here</title>
 </head>
 <body>
 
@@ -55,7 +55,7 @@ try{
   StringBuffer buffer = new StringBuffer();
   buffer.append("인증코드 : ");
   buffer.append(number+"<br>");
-  Address fromAddr = new InternetAddress("tydee_adm@naver.com");//보내는사람
+  Address fromAddr = new InternetAddress("fbtldhk@naver.com");//보내는사람
   msg.setFrom(fromAddr); 
 
   Address toAddr = new InternetAddress(EmailName);// 받는 사람

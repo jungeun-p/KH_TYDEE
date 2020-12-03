@@ -15,7 +15,7 @@
 	</script>   
 <head>
     <meta charset="UTF-8" />
-<title>TYDEE</title>
+    <title>TOAST UI EDITOR</title>
    <!-- Styles -->
     <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor.css" />
     <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor-contents.css" />

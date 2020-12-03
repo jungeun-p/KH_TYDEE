@@ -8,7 +8,7 @@ response.setContentType("text/html; charset=UTF-8");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TYDEE</title>
+<title>Insert title here</title>
 <!--google font-->
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap"
@@ -19,9 +19,6 @@ response.setContentType("text/html; charset=UTF-8");
 	.header{
 	  position: sticky;
 	  top:0;
-	}
-	html, body {
-	overflow-x: hidden;
 	}
 </style>
 </head>

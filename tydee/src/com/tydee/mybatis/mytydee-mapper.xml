@@ -55,7 +55,7 @@
 	</insert>
 	<insert id="insertNew" parameterType="hashmap">
 		INSERT INTO MYTYDEE
-		VALUES(MYTYDEE_SEQ.NEXTVAL, #{user_no}, 'D', #{tiny_title}, 0, #{tiny_content}, '1.jpg', SYSDATE)
+		VALUES(MYTYDEE_SEQ.NEXTVAL, #{user_no}, 'D', #{tiny_title}, 0, #{tiny_content}, null, SYSDATE)
 	</insert>
 	<insert id="insertVision" parameterType="VisionDto">
 		INSERT INTO MYTYDEE_VISION

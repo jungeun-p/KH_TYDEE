@@ -21,12 +21,11 @@ response.setHeader("Expires", "0");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TYDEE</title>
+<title>mytydee</title>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://kit.fontawesome.com/3914a9940d.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="./mytydee_css/mytydee.css" />
-<link rel="stylesheet" type="text/css" href="./mytydee_css/d3maker.css" />
 <!--google font-->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet" />

@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TYDEE</title>
+<title>Insert title here</title>
 <script src="https://kit.fontawesome.com/3914a9940d.js" crossorigin="anonymous"></script>
     <!--google font-->
     <link

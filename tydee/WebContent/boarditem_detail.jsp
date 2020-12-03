@@ -19,7 +19,7 @@ response.setHeader("Expires", "0");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TYDEE</title>
+<title>Insert title here</title>
 <!--google font-->
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap"
@@ -161,7 +161,6 @@ img {
 			} else {
 				return false;
 			}
-		}
 	</script>
 </body>
 </html>

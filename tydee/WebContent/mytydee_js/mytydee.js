@@ -110,7 +110,7 @@ function oneRequest(no, vision_no){
 document.addEventListener("DOMContentLoaded", () => {
     let tiny_no;
     let name = document.getElementsByClassName("tiny__content")[1];
-    let content = document.getElementsByClassName("tiny__content_des")[0];
+    let content = document.getElementsByClassName("tiny__content")[3];
     edit.addEventListener("click", () => {
         if (edit.innerHTML.indexOf("fa-edit") != -1) {
             edit.innerHTML = "<i class='fas fa-undo-alt'></i>";

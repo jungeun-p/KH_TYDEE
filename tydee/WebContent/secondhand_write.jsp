@@ -11,7 +11,7 @@
 
 <head>
 <meta charset="UTF-8" />
-<title>TYDEE</title>
+<title>TOAST UI EDITOR</title>
 <!--google font-->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap"
 	rel="stylesheet" />
