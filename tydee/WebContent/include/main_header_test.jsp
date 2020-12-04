@@ -32,7 +32,7 @@ if (loginuser == null) {
           <li class="tydee__menu__item"><a href="">STORE</a></li>
         </ul>
         <div class="tydee__logo">
-          <a href="main.jsp">TYDEE</a>
+          <a href="main.jsp">T</a>
         </div>
         <div class="tydee__mymenu">
           <ul class="tydee__mymenu__items">
