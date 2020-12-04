@@ -23,17 +23,23 @@
     />
     <link rel="stylesheet" href="./sec_css/secondhand__detail.css" />
 </head>
+<style>
+	.header{
+	  position: sticky;
+	  top:0;
+	}
+</style>
 <body>
 <%
 	SecondHandDto dto = (SecondHandDto) request.getAttribute("dto");
 %>
+<div class="header">
+	<%@ include file="./include/main_header_test.jsp"%>
+</div>
 	<!-- 이 부부은 detail 화면을 보여줍니다.  -->
 
 	<div class="tydee__tips__title">
-		<h1>TYDEE SECOND HAND</h1>
-		<div class="tydee__hashtag">
-			<span>#tydee</span> <span>#tydee</span> <span>#tydee</span> <span>#tydee</span>
-		</div>
+		<h2>TYDEE SECOND HAND</h2>
 	</div>  
 	
   <section id="tydee__tips__detail">

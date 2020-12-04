@@ -35,6 +35,15 @@ response.setHeader("Expires", "0");
 	  position: sticky;
 	  top:0;
 	}
+	.modal__wrap {
+	width: 400px;
+	}
+	.pop__list > table{
+	border-style:none;
+	border:none;
+	background:transparent;
+	border-collapse:collapse;
+}
 </style>
 </head>
 <body>

@@ -26,20 +26,19 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap"
 	rel="stylesheet" />
 <link rel="stylesheet" href="./tip_css/tip_detail1.css" />
+<style>
+	.header{
+	  position: sticky;
+	  top:0;
+	}
+</style>
 </head>
-<%
-	UserInfoDto loginuser = (UserInfoDto) session.getAttribute("loginuser");
-if (loginuser == null) {
-	pageContext.forward("tip_index.jsp");
-}
-%>
 <body>
-
+	<div class="header">
+		<%@ include file="./include/main_header_test.jsp"%>
+	</div>
 	<div class="tydee__tips__title">
-		<h1>TYDEE TIPs</h1>
-		<div class="tydee__hashtag">
-			<span>#tydee</span> <span>#tydee</span> <span>#tydee</span> <span>#tydee</span>
-		</div>
+		<h2>TYDEE TIPs</h2>
 	</div>
 	<section id="tydee__tips__detail">
 		<div class="contents__header">

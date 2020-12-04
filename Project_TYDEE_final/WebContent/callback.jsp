@@ -19,11 +19,11 @@ response.setContentType("text/html; charset=UTF-8");
 </head>
 <body>
 	<%
-	String clientId = "GUk01Uphrk1SGaYQZnul";//애플리케이션 클라이언트 아이디값";
-	String clientSecret = "hX7QuVatNZ";//애플리케이션 클라이언트 시크릿값";
+	String clientId = "1S3rTODmrQPhGWH9f_1L";//애플리케이션 클라이언트 아이디값";
+	String clientSecret = "EpJQFtxmIH";//애플리케이션 클라이언트 시크릿값";
 	String code = request.getParameter("code");
 	String state = request.getParameter("state");
-	String redirectURI = URLEncoder.encode("http://localhost:8787/Project_TYDEE/callback.jsp", "UTF-8");
+	String redirectURI = URLEncoder.encode("http://localhost:8787/Project_TYDEE_final/callback.jsp", "UTF-8");
 	String apiURL;
 	
 	apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";

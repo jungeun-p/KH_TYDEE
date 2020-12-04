@@ -26,12 +26,7 @@
 
 <script src="https://kit.fontawesome.com/3914a9940d.js"
 	crossorigin="anonymous"></script>
-
 </head>
-<%
-	List<BoardItemDto> itemList = (List<BoardItemDto>) request.getAttribute("itemList");
-	UserInfoDto loginuser = (UserInfoDto) session.getAttribute("loginuser");
-%>
 <body>
 	<div class="tydee__basket">
 		<div class="tydee__eshop__title">

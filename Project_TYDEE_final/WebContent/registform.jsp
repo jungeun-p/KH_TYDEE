@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="./login_css/registform.css" />
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <script type="text/javascript">
 	function emailChkConfirm() {
 		window.open("controller.do?command=emailChk", "",
@@ -30,12 +30,25 @@
 		}
 	}
 </script>
+<script>
+   var joinFormSubmitted = false;
+   
+   function submitJoinForm(form){
+      form.user_pwReal.value = sha256(form.user_pw.value);
+      
+      form.user_pw.value = '';
+      
+      form.submit();
+      joinFormSubmitted = true;
+   }
+</script>
 
 
 </head>
 <body>
 
-	<form action="controller.do" method="post">
+	<form action="controller.do" method="post" onsubmit="submitJoinForm(this); return false;">
+		<input type="hidden" name="user_pwReal"/>
 		<input type="hidden" name="command" value="registformres" />
 
 		<div id="tydee__login">

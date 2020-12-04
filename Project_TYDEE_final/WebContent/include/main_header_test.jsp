@@ -66,8 +66,7 @@ if (loginuser == null) {
        <% 
       		} else {
        %>
-        <li class="tydee__mymenu__item"><a href="">LOGIN</a></li>
-		<a href="login.jsp">LOGIN</a>
+        <li class="tydee__mymenu__item"><a href="login.jsp">LOGIN</a></li>
           </ul>
         </div>
       </div>
@@ -88,6 +87,6 @@ if (loginuser == null) {
     <%
       		}
     %>
-	</header>	
+	</header>
 </body>
 </html>

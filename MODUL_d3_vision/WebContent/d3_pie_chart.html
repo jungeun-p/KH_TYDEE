@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PIE CHART</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+    <div id="pie"></div>
+    <script type="text/javascript">
+        const width = 450;
+        const height = 450;
+        const outerRadius = Math.min(width, height) / 2;
+        const innerRadius = outerRadius * 0.5;
+        const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        const dataset = [{
+                name: "동화약품",
+                value: 238500
+            },
+            {
+                name: "CJ대한통운",
+                value: 160500
+            },
+            {
+                name: "두산",
+                value: 100500
+            },
+            {
+                name: "대림산업",
+                value: 99900
+            },
+            {
+                name: "삼양홀딩스",
+                value: 78100
+            }
+        ];
+        const vis = d3.select("#pie")
+            .append("svg:svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("svg:g")
+            .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")")
+            .data([dataset]);
+        const arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+        const pie = d3.pie().value(function (d) {
+            return d.value;
+        });
+        const arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("svg:g")
+            .attr("class", "slice");
+        arcs.append("svg:path")
+            .attr("d", arc)
+            .attr("fill", function (d, i) {
+                return color(i);
+            });
+        arcs.append("svg:text")
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle")
+            .attr("transform", function (d) {
+                return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")";
+            })
+            .html(function (d) {
+                return "<a href='https://www.google.com'>" + d.data.name + "</a>";
+            });
+
+        function angle(d) {
+            var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
+            return (a > 90) ? (a - 180) : a;
+        }
+        vis.append("svg:text")
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle")
+            .text("주식")
+            .attr("class", "title");
+    </script>
+</body>
+
+</html>

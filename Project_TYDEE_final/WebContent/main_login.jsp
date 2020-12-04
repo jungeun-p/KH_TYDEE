@@ -21,16 +21,11 @@ response.setContentType("text/html; charset=UTF-8");
 	}
 </style>
 <body>
-	<div class="header">
-	<%@ include file="./include/main_header_test_login.jsp"%>
+	<div class="main">
+		<div class="header">
+		<%@ include file="./include/main_header_test_login.jsp"%>
+		</div>
 	</div>
-	<section class="tydee__index">
-      <div class="images">
-        <div class="image"><img src="img/scroll.png" alt="" /></div>
-        <div class="image"><img src="img/7.jpg" alt="" /></div>
-        <div class="image"><img src="img/8.jpg" alt="" /></div>
-      </div>
-    </section>
-	<%@ include file="./include/footer.jsp"%>
+	<%@ include file="./include/footer.jsp"%>    
 </body>
 </html>

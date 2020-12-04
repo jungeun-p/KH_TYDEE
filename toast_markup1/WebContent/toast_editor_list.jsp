@@ -23,13 +23,7 @@
 <body>
     <div class="tydee__secondhand">
       <div class="tydee__secondhand__title">
-        <h1>TYDEE SECOND HAND</h1>
-        <div class="tydee__hashtag">
-          <span>#tydee</span>
-          <span>#tydee</span>
-          <span>#tydee</span>
-          <span>#tydee</span>
-        </div>
+        <h1>TOAST</h1>
         <a href="toast_editor.jsp"><p class="wrtie__secondhand"/>+</p></a>
       </div>
   <div class="detailinfo showstep1">

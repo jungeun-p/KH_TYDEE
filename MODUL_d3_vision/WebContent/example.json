@@ -1,0 +1,25 @@
+[{
+    "parent_seq": 0,
+    "name": "방1",
+    "regdate": "7월 26, 2020",
+    "lev": 1,
+    "seq": 1
+}, {
+    "parent_seq": 0,
+    "name": "거실",
+    "regdate": "7월 26, 2020",
+    "lev": 1,
+    "seq": 2
+}, {
+    "parent_seq": 0,
+    "name": "방2",
+    "regdate": "7월 26, 2020",
+    "lev": 1,
+    "seq": 3
+}, {
+    "parent_seq": 0,
+    "name": "부엌",
+    "regdate": "7월 26, 2020",
+    "lev": 1,
+    "seq": 4
+}]

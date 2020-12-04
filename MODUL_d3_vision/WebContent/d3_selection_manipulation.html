@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <script>
+    d3.select("body").style("background-color", "slateblue");
+    //   d3.selectAll("p").style("color", "blue");
+    d3.selectAll("p").style("color", function () {
+      return "hsl(" + Math.random() * 360 + ",100%,50%)";
+    });
+    //   d3.selectAll("p").style("color", function (d, i) {
+    //     return i % 2 ? "#fff" : "#eee";
+    //   });
+    d3.select("body")
+      .selectAll("p")
+      .data([4, 8, 15, 16, 23, 42])
+      .append("p")
+      .text(function (d) {
+        return "I'm number " + d + "!";
+      });
+    d3.select("body").append("p").text("seventh paragraph");
+    d3.select("p").insert("p").text("where am i?");
+    // d3.select("p").remove();
+    d3.select("body").append().html(
+      "<table border='1'><tr><th>where</th><th>when</th></tr><tr><td>at home</td><td>right now</td></tr></table>");
+    d3.select("body").append().html("<input type='checkbox' id='chk'><label for='chk'>test</label>");
+    d3.select("#chk").property("checked", true);
+  </script>
+</body>
+
+</html>

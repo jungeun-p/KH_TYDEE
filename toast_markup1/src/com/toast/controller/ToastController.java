@@ -38,7 +38,7 @@ public class ToastController extends HttpServlet {
 			ToastDto dto = new ToastDto(0, title, content, null);
 			int res = dao.insert(dto);
 			if (res > 0) {
-				jsResponse("등록 성공!", "toast_editor_list.jsp", response);
+				jsResponse("등록 성공!", "location.href='toast.do?command=list'", response);
 			} else {
 				jsResponse("등록 실패...", "toast_editor.jsp", response);
 			}

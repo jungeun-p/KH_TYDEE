@@ -1,0 +1,94 @@
+@charset "EUC-KR";:root {
+  /*color*/
+  --color-white: #ffffff;
+  --color-black: #212121;
+  --color-gray: #f4f4f4;
+  --color-dark-gray: #dddddd;
+
+  /*font size*/
+  --font-large: 36px;
+  --font-regular: 16px;
+  --font-small: 12px;
+
+  /*font weight*/
+  --weight-bold: 700;
+  --weight-regular: 500;
+  --weight-thin: 300;
+
+  /*Size*/
+  --size-border-radius: 13px;
+}
+
+/*universal tags*/
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  cursor: default;
+  color: var(--color-black);
+}
+
+a {
+  margin: 0;
+  text-decoration: none;
+  color: var(--color-black);
+}
+ul,
+li {
+  list-style: none;
+  padding-left: 0;
+}
+
+input {
+  background-color: transparent;
+  cursor: pointer;
+  font-size: var(--font-regular);
+  color: var(--color-dark-gray);
+  margin: 10px 6px;
+  font-weight: var(--weight-bold);
+  padding: 4px 6px;
+  border: 1.5px solid var(--color-dark-gray);
+  border-radius: 4px;
+  position: relative;
+}
+.input {
+  display: flex;
+  flex-direction: row;
+  padding-left: 120px;
+}
+
+/*login*/
+.tydee__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  padding-top: 20px;
+  margin: 0;
+}
+.email {
+  padding: 13px 0;
+}
+
+#naver_id_login {
+  padding: 20px;
+}
+
+.title__inner {
+  width: 130px;
+  height: 20px;
+  border: 0;
+  background-color: #efefef;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-weight: var(--weight-regular);
+  font-size: var(--font-small);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.input__email {
+  text-align: center;
+}

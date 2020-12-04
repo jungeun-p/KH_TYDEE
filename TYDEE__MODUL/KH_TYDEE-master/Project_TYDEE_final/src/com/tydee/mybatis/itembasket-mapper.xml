@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="itembasket-mapper">
+	<insert id="insert" parameterType="ItemBasketDto">
+		INSERT INTO ITEM_BASKET
+		VALUES(ITEM_BASKET_SEQ.NEXTVAL, #{user_no}, #{item_no}, #{item_quan})
+	</insert>
+	<update id="update" parameterType="ItemBasketDto">
+		UPDATE ITEM_BASKET
+		SET ITEM_QUAN = #{item_quan}
+		WHERE BASKET_NO = #{basket_no}
+		AND ITEM_NO = #{item_no}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM ITEM_BASKET
+		WHERE BASKET_NO = #{basket_no}
+	</delete>
+	<delete id="deleteAll" parameterType="int">
+		DELETE FROM ITEM_BASKET
+		WHERE USER_NO = #{user_no}
+	</delete>
+	<select id="selectList" parameterType="int" resultType="ItemBasketDto">
+		SELECT BASKET_NO, b.USER_NO, ITEM_NO, b.ITEM_QUAN, ITEM_TITLE, ITEM_PRICE, ITEM_IMAGE
+		FROM ITEM_BASKET b
+		JOIN BOARD_ITEM USING(ITEM_NO)
+		WHERE USER_NO = #{user_no}
+		ORDER BY BASKET_NO DESC
+	</select>
+	<select id="totalPrice" parameterType="int" resultType="int">
+		SELECT SUM(QUAN * ITEM_PRICE)
+		FROM (SELECT BASKET_NO, USER_NO, ITEM_NO, IB.ITEM_QUAN "QUAN", ITEM_PRICE 
+				FROM ITEM_BASKET IB
+				JOIN BOARD_ITEM USING(ITEM_NO))
+		WHERE USER_NO = #{user_no}
+	</select>
+</mapper>

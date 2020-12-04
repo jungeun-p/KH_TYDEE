@@ -20,7 +20,7 @@ response.setContentType("text/html; charset=UTF-8");
 <body>
 	<%
 	String clientId = "GUk01Uphrk1SGaYQZnul";//애플리케이션 클라이언트 아이디값";
-	String clientSecret = "T96luZXXcj";//애플리케이션 클라이언트 시크릿값";
+	String clientSecret = "aUkCuhAq6i";//애플리케이션 클라이언트 시크릿값";
 	String code = request.getParameter("code");
 	String state = request.getParameter("state");
 	String redirectURI = URLEncoder.encode("http://localhost:8787/TYDEE_login/callback.jsp", "UTF-8");

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="toastmapper">
+	<select id="selectList" resultType="toastDto">
+		SELECT SEQ, TITLE, CONTENT, REGDATE
+		FROM TOASTTABLE
+		ORDER BY SEQ DESC
+	</select>
+	<select id="selectOne" parameterType="int" resultType="toastDto">
+		SELECT SEQ, TITLE, CONTENT, REGDATE
+		FROM TOASTTABLE
+		WHERE SEQ = #{seq}
+	</select>
+	<insert id="insert" parameterType="toastDto">
+		INSERT INTO TOASTTABLE
+		VALUES(TOASTSEQ.NEXTVAL, #{title}, #{content}, SYSDATE)
+	</insert>
+</mapper>

@@ -23,7 +23,6 @@ function listRequest(){
 			}
 			
 			let table = document.createElement("table");
-			table.setAttribute("border", 1);
 			let thead = table.insertRow(-1);
 			let th1 = thead.insertCell(-1);
 			th1.innerHTML = "no.";

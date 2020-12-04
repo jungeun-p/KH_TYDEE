@@ -23,8 +23,8 @@
 <body>
 	<!-- naver login -->
 	<%
-	String clientId = "GUk01Uphrk1SGaYQZnul";//애플리케이션 클라이언트 아이디값";
-	String redirectURI = URLEncoder.encode("http://localhost:8787/Project_TYDEE/callback.jsp", "UTF-8");
+	String clientId = "1S3rTODmrQPhGWH9f_1L";//애플리케이션 클라이언트 아이디값";
+	String redirectURI = URLEncoder.encode("http://localhost:8787/Project_TYDEE_final/callback.jsp", "UTF-8");
 	SecureRandom random = new SecureRandom();
 	String state = new BigInteger(130, random).toString();
 	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -49,7 +49,7 @@
 				</div>
 				
 				<!-- naver login -->
-				<div>
+				<div class="login">
 					<a href="<%=apiURL%>"><img id="naver_id_login" height="40"
 						src="./login_img/naver__login.png" /></a>
 				</div>
