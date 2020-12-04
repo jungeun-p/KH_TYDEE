@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="itemorder-mapper">
+	<update id="insertList" parameterType="java.util.List">
+		<foreach collection="list" item="item" open="INSERT ALL " close=" SELECT * FROM DUAL " separator=" ">
+		INTO ITEM_ORDER
+		(ORDER_NO, ORDER_TITLE, USER_NO, ADDRESS_NO, MERCHANT_UID, ITEM_NO, ITEM_QUAN, ITEM_PRICE, ITEM_TOTAL_PRICE, ORDER_REGDATE)
+		VALUES(
+		ITEM_ORDER_SEQ.NEXTVAL,
+		#{item.order_title},
+		#{item.user_no},
+		#{item.address_no},
+		#{item.merchant_uid},
+		#{item.item_no},
+		#{item.item_quan},
+		#{item.item_price},
+		#{item.item_total_price},
+		SYSDATE
+		)
+		</foreach>
+	</update>
+	<select id="selectList" parameterType="int" resultType="ItemOrderDto">
+		SELECT ORDER_NO, ORDER_TITLE, MERCHANT_UID, ITEM_TOTAL_PRICE, ORDER_REGDATE
+		FROM ITEM_ORDER
+		WHERE USER_NO = #{user_no}
+		GROUP BY ORDER_NO, ORDER_TITLE, MERCHANT_UID, ITEM_TOTAL_PRICE, ORDER_REGDATE
+		ORDER BY ORDER_NO DESC
+	</select>
+	<select id="selectOne" parameterType="int" resultType="TotalDto">
+		SELECT IO.ORDER_NO, IO.ORDER_TITLE, IO.USER_NO, IO.ADDRESS_NO, 
+		IO.MERCHANT_UID, IO.ITEM_NO, 
+		IO.ITEM_QUAN, IO.ITEM_PRICE, IO.ITEM_TOTAL_PRICE, 
+		IO.ORDER_REGDATE, BI.ITEM_TITLE, BI.ITEM_IMAGE, 
+		UA.USER_NAME, UA.USER_PHONE, UA.USER_ADDRESS_FIRST, 
+		UA.USER_ADDRESS_SECOND, UA.USER_ADDRESS_EXTRA, 
+		UA.USER_POSTCODE
+		FROM ITEM_ORDER IO, BOARD_ITEM BI, USER_ADDRESS UA
+		WHERE IO.ITEM_NO = BI.ITEM_NO 
+		AND IO.ADDRESS_NO = UA.ADDRESS_NO 
+		AND ORDER_NO = ${order_no}
+	</select>
+</mapper>
