@@ -24,23 +24,11 @@
 <script src="https://kit.fontawesome.com/3914a9940d.js"
 	crossorigin="anonymous"></script>
 </head>
-<style>
-	.header{
-	  position: sticky;
-	  top:0;
-	}
-</style>
+
 <body>
-	
-	<div class="tip_main">
-		<div class="header">
-		<%@ include file="./include/main_header_test.jsp"%>
-		</div>
+<%@ include file="./include/main_header_test.jsp"%>
    <div class="section">
 	<div class="tydee__secondhand">
-		<div class="tydee__secondhand__title">
-			<h1>TYDEE TIP</h1>
-		</div>
 		<section class="modals">
 			<c:forEach items="${list }" var="dto">
 				<a href="tip.do?command=detail&tip_no=${dto.tip_no}">
@@ -77,8 +65,6 @@
 		</section>
 	</div>
 	</div>
-	</div>
-		<%@ include file="./include/footer.jsp"%>
 </body>
 
 </html>

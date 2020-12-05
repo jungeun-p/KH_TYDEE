@@ -22,20 +22,10 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap"
 	rel="stylesheet" />
 <link rel="stylesheet" href="./sec_css/tydee__secondhandlist.css" />
-<style>
-	.header{
-	  position: sticky;
-	  top:0;
-	}
-</style>
 </head>
 <body>
-	<div class="header">
 	<%@ include file="./include/main_header_test.jsp"%>
-	</div>
 	<div class="tydee__secondhand">
-		<div class="tydee__secondhand__title">
-			<h2>TYDEE SECOND HAND</h2>
 			<form action="secondhand_controller.do" method="post">
 				<div class="buttons">
 				<input type="hidden" name="command" value="write" />
@@ -44,7 +34,6 @@
 				<input class="write" type="submit" value="sell your secondhand" />
 				</div>
 			</form>
-		</div>
 		<section class="modals">
 			<c:forEach items="${list}" var="dto">
 				<a href="secondhand_controller.do?command=detail&sec_no=${dto.sec_no }&user_no=${dto.user_no}">
@@ -62,5 +51,7 @@
 					</div>
 				</a>
 			</c:forEach>
+		</section>
+		</div>
 </body>
 </html>

@@ -51,13 +51,14 @@ ul {
   flex-direction: column;
   position: sticky;
   top: 0%;
-  z-index:4;
 }
 
 .tydee__menu {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  z-index:4;
+  height: 10px;
 }
 
 .tydee__menu__item {
@@ -86,7 +87,9 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 380px;
+  position: sticky;
+  top: 85vh;
+  padding: 0px 30px;
 }
 
 .tydee__sidelogo {

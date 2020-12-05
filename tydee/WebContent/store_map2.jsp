@@ -38,17 +38,10 @@ div {
 #map > div{
 	text-align: center;
 }
-
-.header {
-	position: sticky;
-	top: 0;
-}
 </style>
 </head>
 <body>
-	<div class="header">
 		<%@ include file="./include/main_header_test.jsp"%>
-	</div>
 	<div class="tydee__maps">
 		<div class="tydee__maps__title">
 			<h2>Map</h2>

@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="./include/main_tydee.css" />
 </head>
 <body>
-	<header>
   <nav id="tydee__nav">
       <div class="tydee__menu">
         <ul class="tydee__menu__items">
@@ -27,7 +26,7 @@
           <li class="tydee__menu__item"><a href="">STORE</a></li>
         </ul>
         <div class="tydee__logo">
-          <a href="main_login.jsp">♟</a>
+          <a href="main_login.jsp">TYDEE</a>
         </div>
         <div class="tydee__mymenu">
           <ul class="tydee__mymenu__items">
@@ -35,6 +34,7 @@
           </ul>
         </div>
       </div>
+      </nav>
       <div class="tydee__footer">
         <div class="tydee__sidelogo">
           <p><i class="fas fa-circle"></i></p>
@@ -48,7 +48,6 @@
           TYDEE
         </div>
       </div>
-      </nav>
      <section class="tydee__index">
      <section class="tydee__index_part">
         <div class="image part1"><img src="img/tydee1.png" /></div>
@@ -66,6 +65,7 @@
         <article class="image"><img src="img/8.jpg" alt="" /></article>
       </section>
     </section>	
+</body>
 	 <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", () => {
             window.addEventListener("scroll", () => {
@@ -79,6 +79,4 @@
             });
         });
     </script>	
-   </header>
-</body>
 </html>
