@@ -26,20 +26,9 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap"
 	rel="stylesheet" />
 <link rel="stylesheet" href="./tip_css/tip_detail1.css" />
-<style>
-	.header{
-	  position: sticky;
-	  top:0;
-	}
-</style>
 </head>
 <body>
-	<div class="header">
-		<%@ include file="./include/main_header_test.jsp"%>
-	</div>
-	<div class="tydee__tips__title">
-		<h2>TYDEE TIPs</h2>
-	</div>
+<%@ include file="./include/main_header_test.jsp"%>
 	<section id="tydee__tips__detail">
 		<div class="contents__header">
 		<input type="hidden" name="tip_no" value="${dto.tip_no }">

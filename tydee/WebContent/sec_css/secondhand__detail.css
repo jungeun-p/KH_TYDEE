@@ -170,11 +170,8 @@ li {
   flex-wrap: wrap;
   justify-content: center;
   background-color: var(--color-gray);
-  padding: 40px 0;
 }
 .modal__wrap {
-  position: relative;
-  display: block;
   width: 100%;
   max-width: 300px;
   overflow: hidden;

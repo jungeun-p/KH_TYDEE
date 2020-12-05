@@ -22,14 +22,13 @@ if (loginuser == null) {
 }
 %>
 <body>
-	<header>
   <nav id="tydee__nav">
       <div class="tydee__menu">
         <ul class="tydee__menu__items">
           <li class="tydee__menu__item"><a href="item.do?command=list">SHOP</a></li>
           <li class="tydee__menu__item"><a href="secondhand_controller.do?command=list&user_id=${loginuser.user_id }">SECONDHAND SHOP</a></li>
           <li class="tydee__menu__item"><a href="tip.do?command=main">TIPS</a></li>
-          <li class="tydee__menu__item"><a href="">STORE</a></li>
+          <li class="tydee__menu__item"><a href="store_map2.jsp">STORE</a></li>
         </ul>
         <div class="tydee__logo">
           <a href="main.jsp">TYDEE</a>
@@ -49,6 +48,7 @@ if (loginuser == null) {
           </ul>
         </div>
       </div>
+    </nav>
       <div class="tydee__footer">
         <div class="tydee__sidelogo">
           <p><i class="fas fa-circle"></i></p>
@@ -62,7 +62,6 @@ if (loginuser == null) {
           TYDEE
         </div>
       </div>
-    </nav>
        <% 
       		} else {
        %>
@@ -71,6 +70,7 @@ if (loginuser == null) {
           </ul>
         </div>
       </div>
+    </nav>
       <div class="tydee__footer">
         <div class="tydee__sidelogo">
           <p><i class="fas fa-circle"></i></p>
@@ -84,10 +84,8 @@ if (loginuser == null) {
           TYDEE
         </div>
       </div>
-    </nav>
     <%
       		}
     %>
-	</header>
 </body>
 </html>

@@ -45,34 +45,7 @@ li {
 .tydee__secondhand {
   display: flex;
   flex-direction: column;
-}
-
-/*tydee*/
-
-.tydee__secondhand__title {
-  text-align: center;
-  padding: 30px 30px;
-}
-.tydee__secondhand__title h1 {
-  padding: 0 0 20px 0;
-  font-size: var(--font-large);
-  color: var(--color-black);
-}
-.tydee__hashtag {
-  display: flex;
-  justify-content: center;
-  font-size: var(--font-regular);
-  color: var(--color-black);
-}
-.tydee__hashtag > span {
-  margin: 0 50px;
-}
-
-.wrtie__secondhand {
-  text-align: right;
-  padding-right: 0 20px;
-  font-size: var(--font-regular);
-  margin: 0;
+  top:0;
 }
 
 /*modals*/
@@ -82,12 +55,10 @@ li {
   flex-wrap: wrap;
   justify-content: center;
   background-color: var(--color-gray);
-  padding: 40px 0;
+  padding-bottom: 150px;
 }
 
 .modal__wrap {
-  position: relative;
-  display: block;
   width: 100%;
   max-width: 300px;
   overflow: hidden;
@@ -129,7 +100,6 @@ li {
 .modal__white:hover {
   color: var(--color-black);
   transition: all ease 0.3s 0s;
-  opacity: 0.7;
 }
 
 .write >.modal__wrap{

@@ -31,19 +31,12 @@ response.setHeader("Expires", "0");
 img {
 	width: 200px;
 }
-	.header{
-	  position: sticky;
-	  top:0;
-	}
 </style>
 </head>
 <body>
-	<div class="header">
 	<%@ include file="./include/main_header_test.jsp"%>
-	</div>
 	<div class="tydee__eshop">
 		<div class="tydee__eshop__title">
-			<h2>TYDEE ESHOP</h2>
 			<div class="tydee__hashtag">
 				<a href="item.do?command=list"><span class="tydee__hashtag">All</span></a>
 				<c:if test="${!empty categoryList }">

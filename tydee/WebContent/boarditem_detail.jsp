@@ -46,9 +46,7 @@ img {
 	}
 </style>
 <body>
-<div class="header">
 	<%@ include file="./include/main_header_test.jsp"%>
-</div>
 	<div>
 		<div class="tydee__eshop">
 			<div class="tydee__eshop__title">

@@ -23,9 +23,7 @@ response.setContentType("text/html; charset=UTF-8");
 </style>
 </head>
 <body>
-	<div class="header">
 	<%@ include file="./include/main_header_test.jsp"%>
-	</div>
     	<section class="tydee__index">
     	  <section class="tydee__index_part">
         <div class="image part1"><img src="img/tydee1.png" /></div>
@@ -42,8 +40,7 @@ response.setContentType("text/html; charset=UTF-8");
         <article class="image"><img src="img/7.jpg" alt="" /></article>
         <article class="image"><img src="img/8.jpg" alt="" /></article>
       </section>
-    </section>	
-	<%@ include file="./include/footer.jsp"%>
+    </section>
 	
 	 <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", () => {
